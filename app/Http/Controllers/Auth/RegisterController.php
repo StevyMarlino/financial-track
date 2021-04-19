@@ -61,7 +61,12 @@ class RegisterController extends Controller
      *
      * @param  array  $data
      * @return User
-     * @phpstan-ignore-next-line
+     *
+     */
+
+    /** @phpstan-ignore-next-line
+     * @param array $data
+     * @return
      */
     protected function create(array $data)
     {
