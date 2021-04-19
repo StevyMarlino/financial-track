@@ -17,12 +17,22 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the application My Domain.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-        return view('acceuil');
+        return view('mydomain');
+    }
+
+    /**
+     * Show the application Setting.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function setting()
+    {
+        return view('setting');
     }
 }
