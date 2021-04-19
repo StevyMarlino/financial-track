@@ -63,12 +63,7 @@ class RegisterController extends Controller
      * @return User
      *
      */
-
-    /** @phpstan-ignore-next-line
-     * @param array $data
-     * @return
-     */
-    protected function create(array $data)   /** @phpstan-ignore-line */
+    protected function create(array $data)
     {
         return User::create([  /** @phpstan-ignore-line */
             'name' => $data['name'],
