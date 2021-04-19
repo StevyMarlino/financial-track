@@ -15,7 +15,7 @@ jobs:
       matrix:
         php-version:
           - "7.4"
-        operating-system: [ubuntu-latest, windows-latest]
+        operating-system: [ubuntu-latest]
 
     steps:
     - uses: shivammathur/setup-php@b7d1d9c9a92d8d8463ce36d7f60da34d461724f8
@@ -50,16 +50,19 @@ jobs:
       - uses: actions/checkout@master
         with:
           php-version: "${{ matrix.php-version }}"
+
       - name: PHPStan
         uses: docker://jakzal/phpqa:php7.4-alpine
         with:
           args: phpstan analyze ./app/Http -l 1
+
       - name: Create file
         run: touch .php_cs
-      - name: PHP-CS-Fixer
-        uses: docker://jakzal/phpqa:php7.4-alpine
-        with:
-          args: php-cs-fixer --dry-run --allow-risky=yes --no-interaction --ansi fix . --config .php_cs
+#      - name: PHP-CS-Fixer
+#        uses: docker://jakzal/phpqa:php7.4-alpine
+#        with:
+#          args: php-cs-fixer --dry-run --allow-risky=yes --no-interaction --ansi fix . --config .php_cs
+
       - name: Deptrac
         uses: docker://jakzal/phpqa:php7.4-alpine
         with:
