@@ -66,4 +66,4 @@ jobs:
       - name: Deptrac
         uses: docker://jakzal/phpqa:php7.4-alpine
         with:
-          args: deptrac --no-interaction --ansi --formatter-graphviz-display=0
+          args: deptrac --no-interaction --ansi
