@@ -19,12 +19,12 @@
 
               <!-- Heading -->
               <h1 class="font-weight-bold text-white mb-2">
-                Account Settings
+                My Domain
               </h1>
 
               <!-- Text -->
               <p class="font-size-lg text-white-75 mb-0">
-                Settings for <a class="text-reset" href="mailto:dhgamache@gmail.com">dhgamache@gmail.com</a>
+                 for <a class="text-reset" href="mailto:dhgamache@gmail.com">dhgamache@gmail.com</a>
               </p>
 
             </div>
@@ -90,11 +90,6 @@
                             Settings
                         </a>
                       </li>
-                      <li class="list-item">
-                        <a class="list-link text-reset" href="billing-users.html">
-                          Users
-                        </a>
-                      </li>
                     </ul>
   
                   </div>
@@ -112,30 +107,106 @@
                   <!-- Heading -->
                   {{-- <button type="submit" class="btn btn-primary">ADD Domain</button> --}}
                 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
+                <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                        ADD Domain
+                    </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">ADD NEW DOMAIN / HOST ACCOUNT</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="row">
+                                      <div class="col-12 col-md-6">
+                      
+                                        <!-- First name -->
+                                        <div class="form-label-group">
+                                          <input type="text" class="form-control form-control-flush" id="registrationFirstNameModal" placeholder="Name of custumer">
+                                        </div>
+                      
+                                      </div>
+                                      <div class="col-12 col-md-6">
+                      
+                                        <!-- Last name -->
+                                        <div class="form-label-group">
+                                          <input type="text" class="form-control form-control-flush" id="registrationLastNameModal" placeholder="Name of Host">
+                                        </div>
+                      
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-12 col-md-6">
+                      
+                                        <!-- Amount -->
+                                        <div class="form-label-group">
+                                            <select id="inputState" class="form-control">
+                                                <option selected>Amount...</option>
+                                                <option>10 000 XAF</option>
+                                                <option>15 000 XAF</option>
+                                                <option>25 000 XAF</option>
+                                                <option>30 000 XAF</option>
+                                                <option>50 000 XAF</option>
+                                            </select>
+                                        </div>
+                      
+                                      </div>
+                                      <div class="col-12 col-md-6">
+                      
+                                        <!-- ServiceS -->
+                                        <div class="form-label-group">
+                                            <select id="inputState" class="form-control">
+                                                <option selected>Services</option>
+                                                <option>REG</option>
+                                                <option>REN</option>
+                                                <option>SMS</option>
+                                            </select>
+                                        </div>
+                      
+                                      </div>
+                                    </div>
+
+                                    <!-- Payment Method -->
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-label-group">
+                                                <select id="inputState" class="form-control">
+                                                    <option selected>Payment Method</option>
+                                                    <option>CASH</option>
+                                                    <option>MTN Money</option>
+                                                    <option>Orange Money</option>
+                                                    <option>Western Union</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-12">
+                      
+                                        <!-- Submit -->
+                                        <button class="btn btn-block btn-primary mt-3 lift">
+                                          SAVE
+                                        </button>
+                      
+                                      </div>
+                                    </div>
+                                  </form>
+                            </div>
+                            {{-- <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Understood</button>
+                            </div> --}}
+                        </div>
+                        </div>
+                    </div>
                     
                 </div>
                 {{-- <div class="card-body"> --}}
