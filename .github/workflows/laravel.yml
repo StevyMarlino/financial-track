@@ -14,8 +14,6 @@ jobs:
     strategy:
       matrix:
         php-version:
-          - "7.1"
-          - "7.2"
           - "7.3"
           - "7.4"
           - "8.0"
@@ -38,7 +36,7 @@ jobs:
 
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
-      
+
     - name: Execution des Tests
       env:
         DB_CONNECTION: sqlite
@@ -50,10 +48,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
         with:
-          php-version:
-            - "7.3"
-            - "7.4"
-            - "8.0"
+          php-version: "${{ matrix.php-version }}"
       - name: PHPStan
         uses: docker://jakzal/phpqa:php7.4-alpine
         with:
