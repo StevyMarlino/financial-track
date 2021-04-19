@@ -40,6 +40,8 @@ jobs:
         uses: docker://jakzal/phpqa:php7.4-alpine
         with:
           args: phpstan analyze ./app/Http -l 1
+      - name: Create file
+        run: touch .php_cs
       - name: PHP-CS-Fixer
         uses: docker://jakzal/phpqa:php7.4-alpine
         with:
