@@ -17,11 +17,21 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application My Domain.
+     * Show the application generale.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
+    {
+        return view('home1');
+    }
+
+    /**
+     * Show the application My Domain.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function mydomain()
     {
         return view('mydomain');
     }
