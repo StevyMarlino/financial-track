@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Support\Renderable;
 
 class HomeController extends Controller
 {
@@ -17,32 +17,33 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application generale.
+     * Show the application index.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
      */
     public function index()
     {
-        return view('home1');
+        return view('dashboard.index');
     }
 
     /**
      * Show the application My Domain.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
+     * @todo make a function to get all domain for 
      */
-    public function mydomain()
+    public function myDomain()
     {
-        return view('mydomain');
+        return view('dashboard.show');
     }
 
     /**
      * Show the application Setting.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
      */
-    public function setting()
+    public function settings()
     {
-        return view('setting');
+        return view('dashboard.settings');
     }
 }

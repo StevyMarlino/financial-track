@@ -17,10 +17,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
+
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/my-domain', [App\Http\Controllers\HomeController::class, 'mydomain'])->name('mydomain');
-Route::get('/setting', [App\Http\Controllers\HomeController::class, 'setting'])->name('setting');
+route::group(['prefix' => 'dashboard'], function() {
+
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/my-domain', [App\Http\Controllers\HomeController::class, 'myDomain'])->name('myDomain');
+    Route::get('/setting', [App\Http\Controllers\HomeController::class, 'settings'])->name('setting');
+
+});
+
+
 

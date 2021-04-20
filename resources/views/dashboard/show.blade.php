@@ -1,6 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('title')
+    My Domain
+@endsection
+
+@section('heading')
     My Domain
 @endsection
 

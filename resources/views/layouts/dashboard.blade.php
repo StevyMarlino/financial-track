@@ -39,7 +39,7 @@
 
                 <!-- Heading -->
                 <h1 class="font-weight-bold text-white mb-2">
-                    My Domain
+                    @yield('heading')
                 </h1>
 
                 <!-- Text -->
@@ -87,17 +87,17 @@
                             <!-- List -->
                             <ul class="card-list list text-gray-700 mb-6">
                                 <li class="list-item active">
-                                    <a class="list-link text-reset" href="account-general.html">
+                                    <a class="list-link text-reset" href="{{ route('home') }}">
                                         General
                                     </a>
                                 </li>
                                 <li class="list-item">
-                                    <a class="list-link text-reset" href="account-security.html">
+                                    <a class="list-link text-reset" href="{{ route('myDomain') }}">
                                         My Domains
                                     </a>
                                 </li>
                                 <li class="list-item">
-                                    <a class="list-link text-reset" href="account-notifications.html">
+                                    <a class="list-link text-reset" href="#">
                                         All Domains
                                     </a>
                                 </li>
@@ -111,7 +111,7 @@
                             <!-- List -->
                             <ul class="card-list list text-gray-700 mb-0">
                                 <li class="list-item">
-                                    <a class="list-link text-reset" href="billing-plans-and-payment.html">
+                                    <a class="list-link text-reset" href="{{ route('setting') }}">
                                         Settings
                                     </a>
                                 </li>
@@ -128,7 +128,6 @@
     </div> <!-- / .container -->
 </main>
 <!-- end main -->
-
 
 <!-- JAVASCRIPT
     ================================================== -->
