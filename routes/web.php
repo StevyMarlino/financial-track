@@ -20,5 +20,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/my-domain', [App\Http\Controllers\HomeController::class, 'mydomain'])->name('mydomain');
 Route::get('/setting', [App\Http\Controllers\HomeController::class, 'setting'])->name('setting');
 
