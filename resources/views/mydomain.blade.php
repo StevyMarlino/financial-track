@@ -8,45 +8,44 @@
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> --}}
     <link rel="stylesheet" href="../css/theme.min.css">
 
-  <title>My Domain</title>
+    <title>My Domain</title>
 </head>
 <body>
-    <!--header -->
-    <header class="bg-dark pt-9 pb-11 d-none d-md-block">
-        <div class="container-md">
-          <div class="row align-items-center">
+<!--header -->
+<header class="bg-dark pt-9 pb-11 d-none d-md-block">
+    <div class="container-md">
+        <div class="row align-items-center">
             <div class="col">
 
-              <!-- Heading -->
-              <h1 class="font-weight-bold text-white mb-2">
-                My Domain
-              </h1>
+                <!-- Heading -->
+                <h1 class="font-weight-bold text-white mb-2">
+                    My Domain
+                </h1>
 
-              <!-- Text -->
-              <p class="font-size-lg text-white-75 mb-0">
-                 for <a class="text-reset" href="mailto:dhgamache@gmail.com">dhgamache@gmail.com</a>
-              </p>
+                <!-- Text -->
+                <p class="font-size-lg text-white-75 mb-0">
+                    for <a class="text-reset" href="mailto:dhgamache@gmail.com">dhgamache@gmail.com</a>
+                </p>
 
             </div>
             <div class="col-auto">
 
-              <!-- Button -->
-              <button class="btn btn-sm btn-gray-300-20 text-white">
-                Log Out
-              </button>
+                <!-- Button -->
+                <button class="btn btn-sm btn-gray-300-20 text-white">
+                    Log Out
+                </button>
 
             </div>
-          </div> <!-- / .row -->
-        </div> <!-- / .container -->
-      </header>
-      <!-- end header -->
+        </div> <!-- / .row -->
+    </div> <!-- / .container -->
+</header>
+<!-- end header -->
 
-      <!-- main -->
-      <main class="pb-8 pb-md-11 mt-md-n6">
-        <div class="container-md">
-          <div class="row">
+<!-- main -->
+<main class="pb-8 pb-md-11 mt-md-n6">
+    <div class="container-md">
+        <div class="row">
             <div class="col-12 col-md-3">
-
               <!-- Card -->
               <div class="card card-bleed border-bottom border-bottom-md-0 shadow-light-lg">
 
@@ -172,21 +171,32 @@
 
                                       </div>
                                     </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
 
-                                    <!-- Payment Method -->
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-label-group">
-                                                <select id="inputState" class="form-control">
-                                                    <option selected>Payment Method</option>
-                                                    <option>CASH</option>
-                                                    <option>MTN Money</option>
-                                                    <option>Orange Money</option>
-                                                    <option>Western Union</option>
-                                                </select>
+                                                    <!-- First name -->
+                                                    <div class="form-label-group">
+                                                        <input type="text" class="form-control form-control-flush"
+                                                               id="registrationFirstNameModal"
+                                                               placeholder="Name of custumer">
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-12 col-md-6">
+
+                                                    <!-- Last name -->
+                                                    <div class="form-label-group">
+                                                        <input type="text" class="form-control form-control-flush"
+                                                               id="registrationLastNameModal"
+                                                               placeholder="Name of Host">
+                                                    </div>
+
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
 
                                     <div class="row">
                                       <div class="col-12">
@@ -198,16 +208,11 @@
 
                                       </div>
                                     </div>
-                                  </form>
+                                </div>
                             </div>
-                            {{-- <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Understood</button>
-                            </div> --}}
                         </div>
-                        </div>
-                    </div>
 
+                    </div>
                 </div>
                 {{-- <div class="card-body"> --}}
                 <div class="table-responsive-md"> 
