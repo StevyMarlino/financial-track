@@ -72,7 +72,7 @@
                         </a>
                       </li>
                       <li class="list-item">
-                        <a class="list-link text-reset" href="{{ route('') }}">
+                        <a class="list-link text-reset" href="#">
                           All Domains
                         </a>
                       </li>
