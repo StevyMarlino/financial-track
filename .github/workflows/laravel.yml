@@ -2,9 +2,9 @@ name: Laravel
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, developement ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, development ]
 
 jobs:
   laravel-tests:
@@ -54,14 +54,14 @@ jobs:
       - name: PHPStan
         uses: docker://jakzal/phpqa:php7.4-alpine
         with:
-          args: phpstan analyze ./app/Http -l 1
+          args: phpstan analyze -l 3 ./app/Http
 
-      - name: Create file
-        run: touch .php_cs
+#      - name: Create file
+#        run: touch .php_cs
 #      - name: PHP-CS-Fixer
 #        uses: docker://jakzal/phpqa:php7.4-alpine
 #        with:
-#          args: php-cs-fixer --dry-run --allow-risky=yes --no-interaction --ansi fix . --config .php_cs
+#          args: php-cs-fixer --dry-run --rules=@PSR2 --verbose --diff fix
 
 #      - name: Deptrac
 #        uses: docker://jakzal/phpqa:php7.4-alpine
