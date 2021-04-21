@@ -14,7 +14,15 @@ class CreateDomainsTable extends Migration
     public function up()
     {
         Schema::create('domains', function (Blueprint $table) {
-            $table->id();
+
+            $table->bigIncrements('id');
+            $table->string('name_host');
+            $table->string('name_customer');
+            $table->enum('price',['15000','20000','25000','30000','40000','50000']);
+            $table->enum('service',['REGISTER','RENEW','SMS']);
+            $table->unsignedBigInteger('user_id');
+
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
