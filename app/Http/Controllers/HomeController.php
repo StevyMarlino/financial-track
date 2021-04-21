@@ -8,6 +8,7 @@ use Illuminate\Contracts\Support\Renderable;
 
 class HomeController extends Controller
 {
+    public $domain;
     /**
      * Create a new controller instance.
      *
