@@ -11,12 +11,12 @@ class RoleMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
-     * @param array $roles
+     * @param Request $request
+     * @param Closure $next
+     * @param array $role
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, ... $roles)
+    public function handle(Request $request, Closure $next, ... $role)
     {
 
         //Exception Si l'utilisateur n'est pas connecte
@@ -28,7 +28,7 @@ class RoleMiddleware
 
         //Handle Access denied exception if the roles are not in roles array
 
-        if(!in_array(Auth::user()->role, $roles))
+        if(!in_array(Auth::user()->role, $role))
         {
             abort(403,'Vous n\' avez pas les droits d\'acces a cette page');
         }

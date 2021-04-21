@@ -45,7 +45,7 @@
 
                 <!-- Text -->
                 <p class="font-size-lg text-white-75 mb-0">
-                    for <a class="text-reset" href="mailto:{{ Auth::user()->email }}"> {{ Auth::user()->email }}</a>
+                    for <a class="text-reset" href="mailto:{{ Auth::user()->email }}"> {{ Auth::user()->role }}</a>
                 </p>
 
             </div>
@@ -85,23 +85,28 @@
                                 Account
                             </h6>
 
-                            <!-- List -->
-                            <ul class="card-list list text-gray-700 mb-6">
-                                <li class="list-item active">
-                                    <a class="list-link text-reset" href="{{ route('home') }}">
-                                        General
-                                    </a>
-                                </li>
-                                <li class="list-item">
-                                    <a class="list-link text-reset" href="{{ route('myDomain') }}">
-                                        My Domains
-                                    </a>
-                                </li>
-                                <li class="list-item">
-                                    <a class="list-link text-reset" href="#">
-                                        All Domains
-                                    </a>
-                                </li>
+                            @if( auth()->user()->isAccountant() )
+                                <!-- List -->
+                                <ul class="card-list list text-gray-700 mb-6">
+                                    <li class="list-item active">
+                                        <a class="list-link text-reset" href="{{ route('home') }}">
+                                            General
+                                        </a>
+                                    </li>
+
+
+                                    <li class="list-item">
+                                        <a class="list-link text-reset" href="{{ route('myDomain') }}">
+                                            My Domains
+                                        </a>
+                                    </li>
+                                    <li class="list-item">
+                                        <a class="list-link text-reset" href="#">
+                                            All Domains
+                                        </a>
+                                    </li>
+                               @endif
+
                             </ul>
 
                             <!-- Heading -->

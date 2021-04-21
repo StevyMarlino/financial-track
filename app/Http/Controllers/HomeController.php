@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth','role:user,accountant,admin']);
     }
 
     /**
@@ -36,7 +36,11 @@ class HomeController extends Controller
      */
     public function myDomain()
     {
-        return view('dashboard.show');
+        $domain = auth()->user()
+            ->domain
+            ->sortBy('created_at');
+
+        return view('dashboard.show',['domain' => $domain]);
     }
 
     /**
@@ -56,12 +60,7 @@ class HomeController extends Controller
      */
     public function updateBasicInformation(UserUpdateRequest $request)
     {
-        if(Auth::check)
-        {
-            $user = User::find(auth()->user()->getAuthIdentifier());
 
-
-        }
 
     }
 

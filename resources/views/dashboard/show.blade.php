@@ -109,34 +109,23 @@
                     <tr>
                         <th scope="col">Name of Host</th>
                         <th scope="col">Name of Customers</th>
-                        <th scope="col">Total Amount</th>
+                        <th scope="col">Price</th>
                         <th scope="col">Services</th>
                         <th scope="col">Date</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>REG</td>
-                        <td>12-01-2021</td>
+                    @foreach($domain as $items)
+                        <tr>
 
-                    </tr>
-                    <tr>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>REG</td>
-                        <td>12-01-2021</td>
-                    </tr>
-                    <tr>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>REG</td>
-                        <td>12-01-2021</td>
-                    </tr>
+                            <td>{{ $items->name_host }}</td>
+                            <td>{{ $items->name_customer }}</td>
+                            <td>{{ $items->price }}</td>
+                            <td>{{ $items->service }}</td>
+                            <td>{{ $items->created_at }}</td>
+
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
 
