@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class RoleMiddleware
 {
-    public $role;
     /**
      * Handle an incoming request.
      *
