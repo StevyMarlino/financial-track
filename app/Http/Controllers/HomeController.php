@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\User\UserUpdateRequest;
+use App\Models\User;
+use Illuminate\Contracts\Support\Renderable;
 
 class HomeController extends Controller
 {
@@ -13,36 +15,65 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth','role:user,accountant,admin']);
     }
 
     /**
-     * Show the application generale.
+     * Show the application index.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
      */
     public function index()
     {
-        return view('home1');
+        return view('dashboard.index');
     }
 
     /**
      * Show the application My Domain.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
+     * @todo make a function to get all domain for the current user
      */
-    public function mydomain()
+    public function myDomain()
     {
-        return view('mydomain');
+        $domain = auth()->user()
+            ->domain
+            ->sortBy('created_at');
+
+        return view('dashboard.show',['domain' => $domain]);
     }
 
     /**
      * Show the application Setting.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
+     *
      */
-    public function setting()
+    public function settings()
     {
-        return view('setting');
+        return view('dashboard.settings');
+    }
+
+    /**
+     * @param UserUpdateRequest $request
+     * @todo make a function to update basic information like first name or last name for the current user
+     */
+    public function updateBasicInformation(UserUpdateRequest $request)
+    {
+
+
+    }
+
+    /**
+     *@todo make a function to update settings for the current user like password name
+     */
+    public function updateSecurityInformation()
+    {
+
+    }
+
+    public function store()
+    {
+
     }
 }

@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -33,13 +34,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('login-page/css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('login-page/css/main.css') }}">
     <!--===============================================================================================-->
-</head>
+  </head>
 <body>
 
 <div id="app">
-{{--    <div id="loading">--}}
-{{--        <img id="loading-image" src="{{ asset('login-page/images/giphy.gif') }}" alt="Loading..."/>--}}
-{{--    </div>--}}
     @auth
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -109,6 +107,7 @@
 <script src="{{ asset('login-page/vendor/countdowntime/countdowntime.js') }}"></script>
 <!--===============================================================================================-->
 <script src="{{ asset('login-page/js/main.js') }}"></script>
+
 
 <script>
 
