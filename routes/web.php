@@ -22,10 +22,19 @@ Auth::routes();
 
 route::group(['prefix' => 'dashboard'], function() {
 
+    /**
+     * ROUTE EN GET
+     */
+
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/my-domain', [App\Http\Controllers\HomeController::class, 'myDomain'])->name('myDomain');
     Route::get('/setting', [App\Http\Controllers\HomeController::class, 'settings'])->name('setting');
 
+    /**
+     * ROUTE EN POST
+     */
+
+    Route::post('');
 });
 
 

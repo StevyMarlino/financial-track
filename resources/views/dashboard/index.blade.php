@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-6 col-lg-6">
+            <div class="col-xl-6 col-lg-6 pb-16">
                 <div class="card card-stats mb-4 mb-xl-0 shadow-light-lg">
                     <div class="card-body">
                         <div class="row">
@@ -58,5 +58,6 @@
                 </div>
             </div>
         </div>
+
 
 @endsection

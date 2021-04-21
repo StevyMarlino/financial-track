@@ -11,6 +11,7 @@
     <title>@yield('title')</title>
 
     <!-- Libs CSS -->
+    {{--    <link rel="stylesheet" href="fonts/Feather/feather.css">--}}
     <link rel="stylesheet" href="{{ asset('libs/%40fancyapps/fancybox/dist/jquery.fancybox.min.css') }}">
     <link rel="stylesheet" href="{{ asset('libs/aos/dist/aos.css') }}">
     <link rel="stylesheet" href="{{ asset('libs/choices.js/public/assets/styles/choices.min.css') }}">
@@ -39,7 +40,7 @@
 
                 <!-- Heading -->
                 <h1 class="font-weight-bold text-white mb-2">
-                    @yield('heading')
+                    My Domain
                 </h1>
 
                 <!-- Text -->
@@ -129,33 +130,53 @@
 </main>
 <!-- end main -->
 
-<!-- JAVASCRIPT
-    ================================================== -->
-<!-- Libs JS -->
-<script src="{{ asset('libs/jquery/dist/jquery.min.js') }}"></script>
-<script src="{{ asset('libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('libs/%40fancyapps/fancybox/dist/jquery.fancybox.min.js') }}"></script>
-<script src="{{ asset('libs/aos/dist/aos.js') }}"></script>
-<script src="{{ asset('libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
-<script src="{{ asset('libs/countup.js/dist/countUp.min.js') }}"></script>
-<script src="{{ asset('libs/dropzone/dist/min/dropzone.min.js') }}"></script>
-<script src="{{ asset('libs/flickity/dist/flickity.pkgd.min.js') }}"></script>
-<script src="{{ asset('libs/flickity-fade/flickity-fade.js') }}"></script>
-<script src="{{ asset('libs/highlightjs/highlight.pack.min.js') }}"></script>
-<script src="{{ asset('libs/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
-<script src="{{ asset('libs/isotope-layout/dist/isotope.pkgd.min.js') }}"></script>
-<script src="{{ asset('libs/jarallax/dist/jarallax.min.js') }}"></script>
-<script src="{{ asset('libs/jarallax/dist/jarallax-video.min.js') }}"></script>
-<script src="{{ asset('libs/jarallax/dist/jarallax-element.min.js') }}"></script>
-<script src="{{ asset('libs/quill/dist/quill.min.js') }}"></script>
-<script src="{{ asset('libs/smooth-scroll/dist/smooth-scroll.min.js') }}"></script>
-<script src="{{ asset('libs/typed.js/lib/typed.min.js') }}"></script>
+<!-- SHAPE
+================================================== -->
+<div class="position-relative mt-n11">
+    <div class="shape shape-bottom shape-fluid-x svg-shim text-dark">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/>
+        </svg>
+    </div>
+</div>
 
-<!-- Map -->
-<script src='{{ asset('api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js') }}'></script>
+<!-- FOOTER
+================================================== -->
+<section class="pt-11 bg-dark">
+<footer class="py-8 py-md-11 bg-dark">
 
-<!-- Theme JS -->
-<script src="{{ asset('js/theme.min.js') }}"></script>
+</footer>
+    <!-- JAVASCRIPT
+        ================================================== -->
+    <!-- Libs JS -->
+    <script src="{{ asset('libs/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('libs/%40fancyapps/fancybox/dist/jquery.fancybox.min.js') }}"></script>
+    <script src="{{ asset('libs/aos/dist/aos.js') }}"></script>
+    <script src="{{ asset('libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
+    <script src="{{ asset('libs/countup.js/dist/countUp.min.js') }}"></script>
+    <script src="{{ asset('libs/dropzone/dist/min/dropzone.min.js') }}"></script>
+    <script src="{{ asset('libs/flickity/dist/flickity.pkgd.min.js') }}"></script>
+    <script src="{{ asset('libs/flickity-fade/flickity-fade.js') }}"></script>
+    <script src="{{ asset('libs/highlightjs/highlight.pack.min.js') }}"></script>
+    <script src="{{ asset('libs/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('libs/isotope-layout/dist/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('libs/jarallax/dist/jarallax.min.js') }}"></script>
+    <script src="{{ asset('libs/jarallax/dist/jarallax-video.min.js') }}"></script>
+    <script src="{{ asset('libs/jarallax/dist/jarallax-element.min.js') }}"></script>
+    <script src="{{ asset('libs/quill/dist/quill.min.js') }}"></script>
+    <script src="{{ asset('libs/smooth-scroll/dist/smooth-scroll.min.js') }}"></script>
+    <script src="{{ asset('libs/typed.js/lib/typed.min.js') }}"></script>
+
+    <!-- Map -->
+    <script src='{{ asset('api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js') }}'></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+            crossorigin="anonymous"></script>
+
+
+    <!-- Theme JS -->
+    <script src="{{ asset('js/theme.min.js') }}"></script>
 
 @yield('script')
 

@@ -17,55 +17,45 @@
             <div class="card-header">
 
                 <!-- Heading -->
-            {{-- <button type="submit" class="btn btn-primary">ADD Domain</button> --}}
-            <!-- Button trigger modal -->
+
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-                    ADD Domain
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Register New Domain
                 </button>
 
                 <!-- Modal -->
-                <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
-                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">ADD NEW DOMAIN / HOST
-                                    ACCOUNT</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                                <h5 class="modal-title" id="staticBackdropLabel">New Order Domain / Host Account</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
                             </div>
                             <div class="modal-body">
+                                <!-- Form -->
                                 <form>
                                     <div class="row">
                                         <div class="col-12 col-md-6">
 
-                                            <!-- First name -->
-                                            <div class="form-label-group">
-                                                <input type="text" class="form-control form-control-flush"
-                                                       id="registrationFirstNameModal"
-                                                       placeholder="Name of custumer">
+                                            <!-- Name of customer-->
+                                            <div class="form-group">
+                                                <input class="form-control" id="name" type="text" placeholder="Name Of Customer">
                                             </div>
 
                                         </div>
                                         <div class="col-12 col-md-6">
 
-                                            <!-- Last name -->
-                                            <div class="form-label-group">
-                                                <input type="text" class="form-control form-control-flush"
-                                                       id="registrationLastNameModal"
-                                                       placeholder="Name of Host">
+                                            <!-- Name of Host -->
+                                            <div class="form-group">
+                                                <input class="form-control" id="lastname" type="text" placeholder="Name Of Host">
                                             </div>
 
                                         </div>
-                                    </div>
-                                    <div class="row">
                                         <div class="col-12 col-md-6">
 
                                             <!-- Amount -->
-                                            <div class="form-label-group">
-                                                <select id="inputState" class="form-control">
+                                            <div class="form-group">
+                                                <select class="form-control">
                                                     <option selected>Amount...</option>
                                                     <option>10 000 XAF</option>
                                                     <option>15 000 XAF</option>
@@ -78,45 +68,34 @@
                                         </div>
                                         <div class="col-12 col-md-6">
 
-                                            <!-- ServiceS -->
-                                            <div class="form-label-group">
-                                                <select id="inputState" class="form-control">
-                                                    <option selected>Services</option>
-                                                    <option>REG</option>
-                                                    <option>REN</option>
-                                                    <option>SMS</option>
-                                                </select>
+                                            <!-- Service -->
+                                            <div class="form-group">
+                                                <input class="form-control" id="phone" type="number" placeholder="Phone Number">
                                             </div>
 
                                         </div>
-                                    </div>
+                                        <div class="col-12 col-md-6">
 
-                                    <!-- Payment Method -->
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-label-group">
-                                                <select id="inputState" class="form-control">
-                                                    <option selected>Payment Method</option>
-                                                    <option>CASH</option>
-                                                    <option>MTN Money</option>
-                                                    <option>Orange Money</option>
-                                                    <option>Western Union</option>
-                                                </select>
+                                            <!-- Email -->
+                                            <div class="form-group">
+                                                <input class="form-control" id="phone" type="number" placeholder="Phone Number">
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-12">
-
-                                            <!-- Submit -->
-                                            <button class="btn btn-block btn-primary mt-3 lift">
-                                                SAVE
-                                            </button>
 
                                         </div>
+                                        <div class="col-12 col-md-6">
+
+                                            <!-- Email -->
+                                            <div class="form-group">
+                                                 <input class="form-control" id="phone" type="number" placeholder="Phone Number">
+                                            </div>
+
+                                        </div>
+
                                     </div>
-                                </form>
+                                </form>                           </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Saves Changes</button>
                             </div>
                         </div>
                     </div>
@@ -182,14 +161,6 @@
                 </nav>
             </div>
         </div>
-
-
-        <!-- Text -->
-        <p class="text-center mb-0">
-            <small class="text-muted">If you no longer want to use Landkit, you can <a class="text-danger"
-                                                                                       href="#!">delete your
-                    account</a>.</small>
-        </p>
 
     </div>
 
