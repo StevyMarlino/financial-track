@@ -27,7 +27,7 @@ class UserUpdateRequest extends FormRequest
             'name' => ['bail','string'],
             'last_name' => ['bail','string'],
             'email' => ['bail','email'],
-            'phone' => ['bail','string', 'min:12'],
+            'phone' => ['bail','int', 'min:12'],
             'biography' => ['string', 'nullable'],
         ];
     }

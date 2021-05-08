@@ -25,14 +25,16 @@
             <div class="card-body">
 
                 <!-- Form -->
-                <form>
+                <form action="{{ route('basic.update') }}" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="row">
                         <div class="col-12 col-md-6">
 
                             <!-- Name -->
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input class="form-control" id="name" type="text" placeholder="FirstName">
+                                <input class="form-control @error('phone') is-invalid @enderror" id="name" type="text" placeholder="FirstName" name="name" value="{{ old('name') }}">
                             </div>
 
                         </div>
@@ -41,7 +43,7 @@
                             <!-- Email -->
                             <div class="form-group">
                                 <label for="email">Lastname</label>
-                                <input class="form-control" id="lastname" type="text" placeholder="LastName">
+                                <input class="form-control @error('phone') is-invalid @enderror" id="lastname" type="text" placeholder="LastName" name="last_name" value="{{ old('last_name') }}">
                             </div>
 
                         </div>
@@ -50,7 +52,7 @@
                             <!-- Name -->
                             <div class="form-group">
                                 <label for="name">Email</label>
-                                <input class="form-control" id="email" type="email" placeholder="name@address.com">
+                                <input class="form-control @error('phone') is-invalid @enderror" id="email" type="email" placeholder="name@address.com" name="email" value="{{ old('email') }}">
                             </div>
 
                         </div>
@@ -59,7 +61,13 @@
                             <!-- Email -->
                             <div class="form-group">
                                 <label for="email">Phone Number</label>
-                                <input class="form-control" id="phone" type="number" placeholder="Phone Number">
+                                <input class="form-control @error('phone') is-invalid @enderror" id="phone" type="number" placeholder="Phone Number" name="phone" value="{{ old('phone') }}">
+
+                                <div class="">
+                                    @error('phone')
+                                        {{ $message }}
+                                    @enderror
+                                </div>
                             </div>
 
                         </div>
@@ -174,7 +182,8 @@
             <div class="card-body">
 
                 <!-- List group -->
-                <form>
+                <form action="{{ route('') }}" method="POST">
+                    @method('')
                     <div class="row">
                         <div class="col">
 

@@ -40,12 +40,12 @@
 
                 <!-- Heading -->
                 <h1 class="font-weight-bold text-white mb-2">
-                    My Domain
+                    @yield('heading')
                 </h1>
 
                 <!-- Text -->
                 <p class="font-size-lg text-white-75 mb-0">
-                    for <a class="text-reset" href="mailto:{{ Auth::user()->email }}"> {{ Auth::user()->role }}</a>
+                    for <a class="text-reset" href="mailto:{{ Auth::user()->email }}"> {{ Auth::user()->email }}</a>
                 </p>
 
             </div>
@@ -80,37 +80,77 @@
                     <div class="collapse d-md-block" id="sidenavCollapse">
                         <div class="card-body">
 
-                            <!-- Heading -->
-                            <h6 class="font-weight-bold text-uppercase mb-3">
-                                Account
-                            </h6>
+                            <ul class="card-list list text-gray-700 mb-6">
 
-                            @if( auth()->user()->isAccountant() )
-                                <!-- List -->
-                                <ul class="card-list list text-gray-700 mb-6">
-                                    <li class="list-item active">
-                                        <a class="list-link text-reset" href="{{ route('home') }}">
-                                            General
-                                        </a>
-                                    </li>
+                                <li class="list-item active">
+                                    <a class="list-link text-reset" href="{{ route('home') }}">
+                                        Dashboard
+                                    </a>
+                                </li>
 
+                                @if( auth()->user()->isUser())
 
                                     <li class="list-item">
                                         <a class="list-link text-reset" href="{{ route('myDomain') }}">
                                             My Domains
                                         </a>
                                     </li>
-                                    <li class="list-item">
-                                        <a class="list-link text-reset" href="#">
-                                            All Domains
-                                        </a>
-                                    </li>
+
                                @endif
 
                             </ul>
 
-                            <!-- Heading -->
-                            <h6 class="font-weight-bold text-uppercase mb-3">
+                            @if( auth()->user()->isAccountant() || auth()->user()->isAdmin())
+                                <!-- Heading -->
+                                <h6 class="font-weight-bold text-uppercase mb-3">
+                                    DEPARTEMENTS
+                                </h6>
+
+                                <!-- List -->
+                                <ul class="card-list list text-gray-700 mb-0">
+                                    <li class="list-item">
+                                        <a class="list-link text-reset dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="{{ route('setting') }}">
+                                            Cloudhost
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ route('all-domain-registered') }}" class="list-link text-reset dropdown-item"> All domain </a></li>
+                                            <li><a href="" class="list-link text-reset dropdown-item"> Website Ongoing</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="list-item">
+                                        <a class="list-link text-reset" href="{{ route('setting') }}">
+                                            Pixel
+                                        </a>
+                                    </li>
+                                    <li class="list-item">
+                                        <a class="list-link text-reset" href="{{ route('setting') }}">
+                                            SMS
+                                        </a>
+                                    </li>
+                                    <li class="list-item">
+                                        <a class="list-link text-reset" href="{{ route('setting') }}">
+                                            Payam
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                @if(auth()->user()->isAdmin())
+
+                                        <h6 class="font-weight-bold text-uppercase mb-3 mt-5">
+                                            User Account
+                                        </h6>
+
+                                        <!-- List -->
+                                        <ul class="card-list list text-gray-700 mb-0">
+                                            <li class="list-item">
+                                                <a class="list-link text-reset" href="{{ route('setting') }}">
+                                                    List Users
+                                                </a>
+                                            </li>
+                                        </ul>
+                                 @endif
+                            @endif
+                            <h6 class="font-weight-bold text-uppercase mb-3 mt-5">
                                 Settings
                             </h6>
 

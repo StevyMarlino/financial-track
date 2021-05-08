@@ -18,23 +18,41 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Auth::routes();
+/**
+ *
+ * ROUTE ERRORS
+ *
+ */
+
+Route::get('/errors',[App\Http\Controllers\HomeController::class, 'error']);
+
+Auth::routes(['register' => false]);
 
 route::group(['prefix' => 'dashboard'], function() {
 
     /**
-     * ROUTE EN GET
+     * ROUTE ALL USER
      */
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/my-domain', [App\Http\Controllers\HomeController::class, 'myDomain'])->name('myDomain');
     Route::get('/setting', [App\Http\Controllers\HomeController::class, 'settings'])->name('setting');
+    Route::put('/update-basic-information',[App\Http\Controllers\HomeController::class,'updateBasicInformation'])->name('basic.update');
 
     /**
-     * ROUTE EN POST
+     * ROUTE ACCOUNTANT
      */
 
     Route::post('');
+    Route::get('/all-domain-registered', [App\Http\Controllers\AccountantController::class, 'showAll'])->name('all-domain-registered');
+
+
+    /**
+     * ROUTE USER
+     */
+
+    Route::get('/my-domain', [App\Http\Controllers\UserController::class, 'show'])->name('myDomain');
+    Route::post('/store',[App\Http\Controllers\UserController::class,'store'])->name('store');
+
 });
 
 
