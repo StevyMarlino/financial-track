@@ -9,8 +9,9 @@
 				</span>
                 <form class="login100-form validate-form p-b-33 p-t-5" method="POST" action="{{ route('login') }}">
                     @csrf
-                    <div class="wrap-input100 validate-input" data-validate = "Enter username">
-                        <input class="input100 @error('email') is-invalid @enderror" type="email" name="email" placeholder="Email">
+                    <div class="wrap-input100 validate-input" data-validate="Enter username">
+                        <input class="input100 @error('email') is-invalid @enderror" type="email" name="email"
+                               placeholder="Email">
                         <span class="focus-input100" data-placeholder="&#xe82a;"></span>
 
                         @error('email')
@@ -21,7 +22,8 @@
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter password">
-                        <input class="input100 @error('password') is-invalid @enderror" type="password" name="password" placeholder="Password">
+                        <input class="input100 @error('password') is-invalid @enderror" type="password" name="password"
+                               placeholder="Password">
                         <span class="focus-input100" data-placeholder="&#xe80f;"></span>
 
                         @error('password')
