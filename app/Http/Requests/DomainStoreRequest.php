@@ -13,18 +13,23 @@ class DomainStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return \string[][]
      */
     public function rules()
     {
-        return [
-            //
+
+      return [
+            'name_host' => ['required', 'string','bail'],
+            'name_customer' => ['required','string','bail'],
+            'price' => ['required','in:10000,15000,25000,30000,50000','bail'],
+            'service' => ['required','in:SMS,RENEW,REGISTER','bail'],
+            'method_payment' => ["required","in:ORANGE MONEY,MTN MONEY,CASH",'bail']
         ];
     }
 }

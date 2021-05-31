@@ -23,9 +23,15 @@
 
     <!-- Map -->
     <link href='{{ asset('api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css') }}' rel='stylesheet'/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('css/theme.min.css') }}">
+
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <!--===============================================================================================-->
 
     @yield('style')
@@ -40,12 +46,12 @@
 
                 <!-- Heading -->
                 <h1 class="font-weight-bold text-white mb-2">
-                    My Domain
+                    @yield('heading')
                 </h1>
 
                 <!-- Text -->
                 <p class="font-size-lg text-white-75 mb-0">
-                    for <a class="text-reset" href="mailto:{{ Auth::user()->email }}"> {{ Auth::user()->role }}</a>
+                    for <a class="text-reset" href="mailto:{{ Auth::user()->email }}"> {{ Auth::user()->email }}</a>
                 </p>
 
             </div>
@@ -80,37 +86,81 @@
                     <div class="collapse d-md-block" id="sidenavCollapse">
                         <div class="card-body">
 
-                            <!-- Heading -->
-                            <h6 class="font-weight-bold text-uppercase mb-3">
-                                Account
-                            </h6>
+                            <ul class="card-list list text-gray-700 mb-6">
 
-                            @if( auth()->user()->isAccountant() )
-                                <!-- List -->
-                                <ul class="card-list list text-gray-700 mb-6">
-                                    <li class="list-item active">
-                                        <a class="list-link text-reset" href="{{ route('home') }}">
-                                            General
-                                        </a>
-                                    </li>
+                                <li class="list-item active">
+                                    <a class="list-link text-reset" href="{{ route('home') }}">
+                                        Dashboard
+                                    </a>
+                                </li>
 
+                                @if( auth()->user()->isUser() or auth()->user()->isAdmin())
 
                                     <li class="list-item">
                                         <a class="list-link text-reset" href="{{ route('myDomain') }}">
                                             My Domains
                                         </a>
                                     </li>
-                                    <li class="list-item">
-                                        <a class="list-link text-reset" href="#">
-                                            All Domains
-                                        </a>
-                                    </li>
-                               @endif
+
+                                @endif
 
                             </ul>
 
+                        @if( auth()->user()->isAccountant() || auth()->user()->isAdmin())
                             <!-- Heading -->
-                            <h6 class="font-weight-bold text-uppercase mb-3">
+                                <h6 class="font-weight-bold text-uppercase mb-3">
+                                    DEPARTEMENTS
+                                </h6>
+
+                                <!-- List -->
+                                <ul class="card-list list text-gray-700 mb-0">
+                                    <li class="list-item">
+                                        <a class="list-link text-reset dropdown-toggle" data-bs-toggle="dropdown"
+                                           aria-expanded="false" href="{{ route('setting') }}">
+                                            Cloudhost
+                                        </a>
+
+                                        <!-- PAGE EN COMMENTAIRE SERONT TRAITES UNE AUTRE FOIS -->
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ route('all-domain-registered') }}"
+                                                   class="list-link text-reset dropdown-item"> All domain </a></li>
+                                            {{--                                            <li><a href="" class="list-link text-reset dropdown-item"> Website Ongoing</a></li>--}}
+                                        </ul>
+                                    </li>
+                                    {{--                                    <li class="list-item">--}}
+                                    {{--                                        <a class="list-link text-reset" href="{{ route('setting') }}">--}}
+                                    {{--                                            Pixel--}}
+                                    {{--                                        </a>--}}
+                                    {{--                                    </li>--}}
+                                    {{--                                    <li class="list-item">--}}
+                                    {{--                                        <a class="list-link text-reset" href="{{ route('setting') }}">--}}
+                                    {{--                                            SMS--}}
+                                    {{--                                        </a>--}}
+                                    {{--                                    </li>--}}
+                                    {{--                                    <li class="list-item">--}}
+                                    {{--                                        <a class="list-link text-reset" href="{{ route('setting') }}">--}}
+                                    {{--                                            Payam--}}
+                                    {{--                                        </a>--}}
+                                    {{--                                    </li>--}}
+                                </ul>
+
+                                @if(auth()->user()->isAdmin())
+
+                                    <h6 class="font-weight-bold text-uppercase mb-3 mt-5">
+                                        User Account
+                                    </h6>
+
+                                    <!-- List -->
+                                    <ul class="card-list list text-gray-700 mb-0">
+                                        <li class="list-item">
+                                            <a class="list-link text-reset" href="{{ route('user.index') }}">
+                                                List Users
+                                            </a>
+                                        </li>
+                                    </ul>
+                                @endif
+                            @endif
+                            <h6 class="font-weight-bold text-uppercase mb-3 mt-5">
                                 Settings
                             </h6>
 
@@ -148,9 +198,9 @@
 <!-- FOOTER
 ================================================== -->
 <section class="pt-11 bg-dark">
-<footer class="py-8 py-md-11 bg-dark">
+    <footer class="py-8 py-md-11 bg-dark">
 
-</footer>
+    </footer>
     <!-- JAVASCRIPT
         ================================================== -->
     <!-- Libs JS -->
@@ -179,9 +229,57 @@
             integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
             crossorigin="anonymous"></script>
 
-
     <!-- Theme JS -->
     <script src="{{ asset('js/theme.min.js') }}"></script>
+
+    <script>
+        @if(session()->has('message'))
+            toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.success("{{ session('message') }}");
+        @endif
+    </script>
+
+    <script>
+        @if(count($errors) > 0)
+            @foreach($errors->all() as $error)
+            toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.error("{{ $error }}");
+        @endforeach
+        @endif
+    </script>
+
 
 @yield('script')
 

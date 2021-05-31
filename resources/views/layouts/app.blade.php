@@ -10,6 +10,11 @@
 
     <title>{{ config('app.name', 'Track Finance') }}</title>
 
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="{{ asset('login-page/images/icons/favicon.ico') }}"/>
     <!--===============================================================================================-->
@@ -34,58 +39,21 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('login-page/css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('login-page/css/main.css') }}">
     <!--===============================================================================================-->
+
+    <script
+        src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js">
+    </script>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
   </head>
 <body>
 
 <div id="app">
-    @auth
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Track Finance') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    @endauth
 
     @yield('content')
-
 
 </div>
 
@@ -108,12 +76,7 @@
 <!--===============================================================================================-->
 <script src="{{ asset('login-page/js/main.js') }}"></script>
 
-
-<script>
-
-        $('#loading').load();
-
-</script>
+@yield('js')
 
 </body>
 
