@@ -13,13 +13,8 @@ class UserTest extends TestCase
      * @return void
      * @test
      */
-    public function Route()
+    public function route()
     {
-        $user = new User();
 
-        $user->post('');
-
-
-        $this->assertTrue(true);
     }
 }
