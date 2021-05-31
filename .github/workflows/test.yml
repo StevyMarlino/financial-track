@@ -8,6 +8,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version:
+          - "7.4"
     services:
       # mysql-service Label used to access the service container
       mysql-service:
@@ -29,6 +33,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          php-version: "${{ matrix.php-version }}"
       - name: Laravel Setup
         run: |
           cp .env.example .env
