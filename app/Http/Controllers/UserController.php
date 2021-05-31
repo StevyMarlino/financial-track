@@ -33,20 +33,17 @@ class UserController extends Controller
 
         $domain = new Domain();
 
-        $domain->name_customer = $request['name_customer'];
-        $domain->name_host = $request['name_host'];
-        $domain->price = $request['price'];
-        $domain->service = $request['service'];
-        $domain->method_payment = $request['method_payment'];
-        $domain->user_id = auth()->user()->getAuthIdentifier();
+        $domain['name_customer'] = $request['name_customer'];
+        $domain['name_host'] = $request['name_host'];
+        $domain['price'] = $request['price'];
+        $domain['service'] = $request['service'];
+        $domain['method_payment'] = $request['method_payment'];
+        $domain['user_id'] = auth()->user()->getAuthIdentifier();
 
         $domain->save();
 
 
-        /**
-         * @todo add message flash with Toast library
-         */
-        return redirect()->back()->with('message','stored domain');
+        return redirect()->back()->with('message','Domain stored successfully');
     }
 
     /**

@@ -10,6 +10,11 @@
 
     <title>{{ config('app.name', 'Track Finance') }}</title>
 
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="{{ asset('login-page/images/icons/favicon.ico') }}"/>
     <!--===============================================================================================-->
@@ -34,6 +39,15 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('login-page/css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('login-page/css/main.css') }}">
     <!--===============================================================================================-->
+
+    <script
+        src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js">
+    </script>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
   </head>
 <body>
 
@@ -62,12 +76,7 @@
 <!--===============================================================================================-->
 <script src="{{ asset('login-page/js/main.js') }}"></script>
 
-
-<script>
-
-        $('#loading').load();
-
-</script>
+@yield('js')
 
 </body>
 

@@ -30,7 +30,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        return view('dashboard.index')->with('message'," Welcome ");
     }
 
 
@@ -62,8 +62,7 @@ class HomeController extends Controller
 
         $user->save();
 
-
-        return redirect()->back()->with('message','updated information');
+        return redirect()->back()->with('message','Information updated successfully');
 
     }
 

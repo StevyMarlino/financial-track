@@ -42,7 +42,7 @@
 
                             <!-- Email -->
                             <div class="form-group">
-                                <label for="email">Lastname</label>
+                                <label for="last_name">Last name</label>
                                 <input class="form-control @error('phone') is-invalid @enderror" id="lastname" type="text" placeholder="LastName" name="last_name" value="{{ old('last_name') }}">
                             </div>
 
@@ -51,7 +51,7 @@
 
                             <!-- Name -->
                             <div class="form-group">
-                                <label for="name">Email</label>
+                                <label for="email">Email</label>
                                 <input class="form-control @error('phone') is-invalid @enderror" id="email" type="email" placeholder="name@address.com" name="email" value="{{ old('email') }}">
                             </div>
 
@@ -60,8 +60,8 @@
 
                             <!-- Email -->
                             <div class="form-group">
-                                <label for="email">Phone Number</label>
-                                <input class="form-control @error('phone') is-invalid @enderror" id="phone" type="number" placeholder="Phone Number" name="phone" value="{{ old('phone') }}">
+                                <label for="phone">Phone Number</label>
+                                <input class="form-control @error('phone') is-invalid @enderror" id="phone" type="phone" placeholder="Phone Number" name="phone" value="{{ old('phone') }}">
 
                                 <div class="">
                                     @error('phone')
@@ -182,8 +182,9 @@
             <div class="card-body">
 
                 <!-- List group -->
-                <form action="{{ route('') }}" method="POST">
-                    @method('')
+                <form action="{{ route('basic.update') }}" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="row">
                         <div class="col">
 
