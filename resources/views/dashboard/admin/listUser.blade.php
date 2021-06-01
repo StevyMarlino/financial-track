@@ -113,34 +113,6 @@
                                         </div>
 
                                     </div>
-                                    {{-- <div class="col-12 col-md-6">
-
-                                        <!-- Service -->
-                                        <div class="form-group">
-                                            <select name="service" class="form-control @error('service') is-invalid @enderror">
-                                                <option disabled selected hidden>SERVICE ...</option>
-                                                <option value="SMS">SMS</option>
-                                                <option value="RENEW">RENEW</option>
-                                                <option value="REGISTER">REGISTER</option>
-                                            </select>
-                                        </div>
-                                        @error('service')
-                                            <div class="alert alert-danger">{{ $message }} </div>
-                                        @enderror
-                                    </div> --}}
-                                    {{-- <div class="col-12 col-md-12">
-
-                                        <!-- Payment Method -->
-                                        <select name="method_payment" class="form-control @error('method_payment') is-invalid @enderror">
-                                            <option selected disabled hidden>METHODE PAYEMENT...</option>
-                                            <option value="ORANGE MONEY">ORANGE MONEY</option>
-                                            <option value="MTN MONEY">MTN MONEY</option>
-                                            <option value="CASH">CASH</option>
-                                        </select>
-                                        @error('method_payment')
-                                        <div class="alert alert-danger mt-2">{{ $message }} </div>
-                                        @enderror
-                                    </div> --}}
 
                                 </div>
                                 <div class="modal-footer">
