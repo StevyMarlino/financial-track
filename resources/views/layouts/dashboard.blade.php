@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="{{ asset('libs/highlightjs/styles/vs2015.css') }}">
     <link rel="stylesheet" href="{{ asset('libs/jarallax/dist/jarallax.css') }}">
     <link rel="stylesheet" href="{{ asset('libs/quill/dist/quill.core.css') }}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
 
     <!-- Map -->
     <link href='{{ asset('api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css') }}' rel='stylesheet'/>
@@ -222,6 +224,9 @@
     <script src="{{ asset('libs/quill/dist/quill.min.js') }}"></script>
     <script src="{{ asset('libs/smooth-scroll/dist/smooth-scroll.min.js') }}"></script>
     <script src="{{ asset('libs/typed.js/lib/typed.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 
     <!-- Map -->
     <script src='{{ asset('api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js') }}'></script>
@@ -279,6 +284,12 @@
         @endforeach
         @endif
     </script>
+    <script>
+        $(document).ready(function() {
+                $('#datatable').DataTable();
+        } );
+    </script>
+
 
 
 @yield('script')
