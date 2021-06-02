@@ -1,5 +1,6 @@
 <?php
 
+// use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,12 @@ route::group(['prefix' => 'dashboard'], function() {
 
     Route::get('/my-domain', [App\Http\Controllers\UserController::class, 'show'])->name('myDomain');
     Route::post('/store',[App\Http\Controllers\UserController::class,'store'])->name('store');
+
+    /**
+     * ROUTE ADMIN
+     */
+
+     Route::post('/list-users',[App\Http\Controllers\AdminController::class,'store'])->name('userSave');
 
 });
 
