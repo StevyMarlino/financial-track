@@ -26,17 +26,14 @@ class AdminController extends Controller
 
     public function store(UseraddRequest $request)
     {
-
-        $dataArray = array(
+        User::create([
             "name" => $request->name,
             "last_name" => $request->last_name,
             "email" => $request->email,
             "role" => $request->role,
             "phone" => $request->phone,
-            "password" => bcrypt($request->password),
-        );
-
-        User::create($dataArray);
+            "password" => bcrypt($request->password)
+        ]);
 
         return back()->with("message", "The Registration completed");
 
