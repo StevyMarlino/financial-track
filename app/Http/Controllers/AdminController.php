@@ -38,7 +38,7 @@ class AdminController extends Controller
 
         User::create($dataArray);
 
-        return back()->with("message", "Success! Registration completed");
+        return back()->with("message", "The Registration completed");
 
     }
 }
