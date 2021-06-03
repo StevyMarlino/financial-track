@@ -10,11 +10,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $data = [
-            'users' => User::all()
-        ];
-
-        return view('dashboard.admin.listUser', $data);
+        return view('dashboard.admin.listUser', ['users' => User::all()]);
     }
 
     /**
