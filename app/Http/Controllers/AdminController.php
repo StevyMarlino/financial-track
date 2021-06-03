@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Requests\UseraddRequest;
+use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 
 class AdminController extends Controller
 {
     public function index()
     {
         $data = [
-            'users' => User::query()->select('*')->get()
+            'users' => User::all()
         ];
 
-        return view('dashboard.admin.listUser',$data);
+        return view('dashboard.admin.listUser', $data);
     }
 
     /**
@@ -24,20 +24,21 @@ class AdminController extends Controller
      * @return RedirectResponse
      */
 
-    public function store(UseraddRequest $request) {
+    public function store(UseraddRequest $request)
+    {
 
-        $dataArray      =       array(
-            "name"          =>          $request->name,
-            "last_name"     =>          $request->last_name,
-            "email"         =>          $request->email,
-            "role"          =>          $request->role,
-            "phone"         =>          $request->phone,
-            "password"      =>          bcrypt($request->password),
+        $dataArray = array(
+            "name" => $request->name,
+            "last_name" => $request->last_name,
+            "email" => $request->email,
+            "role" => $request->role,
+            "phone" => $request->phone,
+            "password" => bcrypt($request->password),
         );
 
         User::create($dataArray);
 
-            return back()->with("message", "Success! Registration completed");
+        return back()->with("message", "Success! Registration completed");
 
     }
 }
