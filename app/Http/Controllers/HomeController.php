@@ -85,7 +85,7 @@ class HomeController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-        
+
         return redirect()->route('login')->with('message', 'Password successfully changed Please Re-login');
 
     }
