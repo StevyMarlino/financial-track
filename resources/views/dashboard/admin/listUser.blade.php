@@ -33,7 +33,7 @@
                         </div>
                         <div class="modal-body">
                             <!-- Form -->
-                            <form method="post" action="{{ route('store') }}">
+                            <form method="post" action="{{ route('userSave') }}">
                                 @csrf
                                 <div class="row">
                                     <div class="col-12 col-md-6">
@@ -72,7 +72,7 @@
 
                                         <!-- Phone number -->
                                         <div class="form-group">
-                                            <input class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" name="phone" id="phone" type="number" placeholder="Phone number">
+                                            <input class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" name="phone" id="phone" type="phone" placeholder="Phone number">
                                         </div>
                                         @error('phone')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -109,8 +109,11 @@
 
                                         <!--Confirm Password -->
                                         <div class="form-group">
-                                            <input class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" name="password_confirmation" id="password-confirm" type="password" placeholder="Confirm Password" >
+                                            <input class="form-control @error('password') is-invalid @enderror" value="{{ old('confirm_password') }}" name="password_confirmation" id="confirm_password" type="password" placeholder="Confirm Password" >
                                         </div>
+                                        @error('confirm_password')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
 
                                     </div>
 
