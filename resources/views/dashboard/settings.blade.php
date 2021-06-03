@@ -182,7 +182,7 @@
             <div class="card-body">
 
                 <!-- List group -->
-                <form action="{{ route('basic.update') }}" method="POST">
+                <form action="{{ route('password.update') }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="row">
@@ -191,7 +191,7 @@
                             <!-- Name -->
                             <div class="form-group">
                                 <label for="email">Current Password</label>
-                                <input class="form-control" id="name" type="password" placeholder="Current Password">
+                                <input class="form-control @error('old_password') is-invalid @enderror" id="old_password" type="password" placeholder="Current Password" name="old_password">
                             </div>
 
                         </div>
@@ -200,7 +200,7 @@
                             <!-- New Password -->
                             <div class="form-group">
                                 <label for="email">New Password</label>
-                                <input class="form-control" id="lastname" type="password" placeholder="New Password">
+                                <input class="form-control @error('password') is-invalid @enderror" id="password" type="password" placeholder="New Password" name="password">
                             </div>
 
                         </div>
@@ -210,7 +210,7 @@
                             <!-- Confirm Password -->
                             <div class="form-group">
                                 <label for="name">Confirm Password</label>
-                                <input class="form-control" id="email" type="password" placeholder="Confirm Password">
+                                <input class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" type="password" placeholder="Confirm Password" name="password_confirmation">
                             </div>
 
                         </div>

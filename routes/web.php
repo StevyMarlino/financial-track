@@ -38,6 +38,7 @@ route::group(['prefix' => 'dashboard'], function() {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/setting', [App\Http\Controllers\HomeController::class, 'settings'])->name('setting');
     Route::put('/update-basic-information',[App\Http\Controllers\HomeController::class,'updateBasicInformation'])->name('basic.update');
+    Route::put('/update-password',[App\Http\Controllers\HomeController::class,'updateSecurityInformation'])->name('password.update');
     Route::get('/users-list',[App\Http\Controllers\AdminController::class,'index'])->name('user.index');
 
     /**
