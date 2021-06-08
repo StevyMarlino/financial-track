@@ -34,4 +34,33 @@ class AdminController extends Controller
         return back()->with("message", "The Registration completed");
 
     }
+
+     /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, int $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+        ]);
+
+        $id->update($request->all());
+        return back()->with("message","updated successfully");
+    }
+
+    /**
+     *  Remove user.
+     *
+     * @param int $id
+     */
+    public function destroy(int $id)
+    {
+        $user = user::find($id);
+        $user->delete();
+
+        return redirect()->back()->with('message','User deleted successfully');
+    }
 }
