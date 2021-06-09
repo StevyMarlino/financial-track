@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UseraddRequest;
+use App\Http\Requests\User\UserUpdateRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Requests\UseraddRequest;
 use Illuminate\Http\RedirectResponse;
 
 class AdminController extends Controller
@@ -35,20 +37,39 @@ class AdminController extends Controller
 
     }
 
+
+    /**
+     * Show the form for editing the specified user.
+     *
+     * @param user $user
+     * @return void
+     */
+    public function edit($id)
+    {
+        // $user = user::find($id);
+        // dd($user);
+        // return view('user-edit', compact('user'));
+    }
+
      /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, $users)
     {
-        $request->validate([
+        $user = user::find($id);
+        dd($user);
+        return view('user-update', compact('user'));
+         $request->validate([
             'name' => 'required',
             'last_name' => 'required',
             'email' => 'required',
             'phone' => 'required',
         ]);
 
-        $id->update($request->all());
-        return back()->with("message","updated successfully");
+        // $user = user::find($id);
+        $users->update();
+        // $user->update($request->all(), $user);
+        return redirect()->route('UserUpdate')->with("message","user updated successfully");
     }
 
     /**

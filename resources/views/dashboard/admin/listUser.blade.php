@@ -13,7 +13,7 @@
 <div class="col-12 col-md-9">
 
     <!-- Card -->
-    <div class="card card-bleed shadow-light-lg mb-6" style="width: 138%">
+    <div class="card card-bleed shadow-light-lg mb-6" style="width: 132%">
         <div class="card-header">
 
             <!-- Heading -->
@@ -129,7 +129,7 @@
             </div>
             <!-- End Modal -->
             <!-- Modal update user-->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -138,7 +138,7 @@
                         </div>
                         <div class="modal-body">
                             <!-- Form -->
-                            <form method="post" action="{{ route('UserUpdate',$items->id) }}">
+                            <form method="post" action="{{ route('userUpdate') }}">
                                 @csrf
                                 @method('PUT')
 
@@ -147,11 +147,11 @@
 
                                         <!-- Name of user-->
                                         <div class="form-group">
-                                            <input class="form-control @error('name') is-invalid @enderror" value="{{ $items->name }}" name="name" id="name" type="text" >
+                                            <input class="form-control @error('name') is-invalid @enderror" value="{{ $user->name }}" name="name"  type="text" >
                                         </div>
 
                                         @error('name')
-                                        <div class="alert alert-danger">  {{ $message }} </div>
+                                        <div class="alert alert-danger">{{ $message }} </div>
                                         @enderror
 
                                     </div>
@@ -159,7 +159,7 @@
 
                                         <!-- Last Name -->
                                         <div class="form-group">
-                                            <input class="form-control @error('last_name') is-invalid @enderror" value="{{ $items->last_name }}" name="last_name" id="last_name" type="text">
+                                            <input class="form-control @error('last_name') is-invalid @enderror" value="{{ $users->last_name }}" name="last_name" type="text">
                                         </div>
                                         @error('last_name')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -169,7 +169,7 @@
 
                                         <!-- email -->
                                         <div class="form-group">
-                                            <input class="form-control @error('email') is-invalid @enderror" value="{{ $items->email }}" name="email" id="email" type="email" placeholder="Email">
+                                            <input class="form-control @error('email') is-invalid @enderror" value="{{ $users->email }}" name="email" type="email">
                                         </div>
                                         @error('email')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -179,7 +179,7 @@
 
                                         <!-- Phone number -->
                                         <div class="form-group">
-                                            <input class="form-control @error('phone') is-invalid @enderror" value="{{ $items->phone }}" name="phone" id="phone" type="phone">
+                                            <input class="form-control @error('phone') is-invalid @enderror" value="{{ $users->phone }}" name="phone" type="phone">
                                         </div>
                                         @error('phone')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -191,7 +191,6 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </form>
@@ -211,7 +210,7 @@
                         <th>Last name</th>
                         <th>Phone</th>
                         <th>Email</th>
-                        <th>Action</th>
+                        <th style="width:20%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -223,7 +222,7 @@
                         <td>{{ $items->email }}</td>
                         <td>
                             <form action="{{ route('UserDestroy',$items->id) }}" method="post">
-                                <a class="btn btn-primary" href="{{ route('UserUpdate',$items->id) }}">
+                                <a class="btn btn-primary" href="{{ route('userEdit',$items->id) }}" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
                                     <i class="fas fa-user-edit"></i>
                                 </a>
 
@@ -243,3 +242,5 @@
 </div>
 
 @endsection
+
+
