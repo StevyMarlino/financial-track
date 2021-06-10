@@ -129,16 +129,18 @@
             </div>
             <!-- End Modal -->
             <!-- Modal update user-->
-            <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            @foreach($users as $user)
+            <div class="modal fade" id="staticBackdrop1{{ $user->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Update User</h5>
+                            <h5 class="modal-title" id="staticBackdropLabel">Update User <b>{{ $user->name }}</b></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
                         </div>
                         <div class="modal-body">
+                            
                             <!-- Form -->
-                            <form method="post" action="{{ route('userUpdate') }}">
+                            <form method="post" action="{{ route('userUpdate',$user->id) }}">
                                 @csrf
                                 @method('PUT')
 
@@ -147,6 +149,8 @@
 
                                         <!-- Name of user-->
                                         <div class="form-group">
+                                            <input class="form-control" value="{{ $user->id }}" name="id"  type="hidden" >
+                                        
                                             <input class="form-control @error('name') is-invalid @enderror" value="{{ $user->name }}" name="name"  type="text" >
                                         </div>
 
@@ -159,7 +163,7 @@
 
                                         <!-- Last Name -->
                                         <div class="form-group">
-                                            <input class="form-control @error('last_name') is-invalid @enderror" value="{{ $users->last_name }}" name="last_name" type="text">
+                                            <input class="form-control @error('last_name') is-invalid @enderror" value="{{ $user->last_name }}" name="last_name" type="text">
                                         </div>
                                         @error('last_name')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -169,7 +173,7 @@
 
                                         <!-- email -->
                                         <div class="form-group">
-                                            <input class="form-control @error('email') is-invalid @enderror" value="{{ $users->email }}" name="email" type="email">
+                                            <input class="form-control @error('email') is-invalid @enderror" value="{{ $user->email }}" name="email" type="email">
                                         </div>
                                         @error('email')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -179,7 +183,7 @@
 
                                         <!-- Phone number -->
                                         <div class="form-group">
-                                            <input class="form-control @error('phone') is-invalid @enderror" value="{{ $users->phone }}" name="phone" type="phone">
+                                            <input class="form-control @error('phone') is-invalid @enderror" value="{{ $user->phone }}" name="phone" type="phone">
                                         </div>
                                         @error('phone')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -191,13 +195,15 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-success">Update user</button>
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
             <!-- End Modal -->
 
         </div>
@@ -222,7 +228,7 @@
                         <td>{{ $items->email }}</td>
                         <td>
                             <form action="{{ route('UserDestroy',$items->id) }}" method="post">
-                                <a class="btn btn-primary" href="{{ route('userEdit',$items->id) }}" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+                                <a class="btn btn-primary" href="{{ route('userUpdate',$items->id) }}" data-bs-toggle="modal" data-bs-target="#staticBackdrop1{{ $items->id }}">
                                     <i class="fas fa-user-edit"></i>
                                 </a>
 

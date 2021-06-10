@@ -62,8 +62,7 @@ route::group(['prefix' => 'dashboard'], function() {
 
      Route::post('/list-users',[App\Http\Controllers\AdminController::class,'store'])->name('userSave');
      Route::delete('/users-list/{id}',[App\Http\Controllers\AdminController::class,'destroy'])->name('UserDestroy');
-     Route::put('/users-update',[App\Http\Controllers\AdminController::class,'update'])->name('userUpdate');
-     Route::put('/users-edit',[App\Http\Controllers\AdminController::class,'edit'])->name('userEdit');
+     Route::put('/users-update/{id]',[App\Http\Controllers\AdminController::class,'update'])->name('userUpdate');
 
 });
 

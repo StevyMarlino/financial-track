@@ -38,38 +38,22 @@ class AdminController extends Controller
     }
 
 
-    /**
-     * Show the form for editing the specified user.
-     *
-     * @param user $user
-     * @return void
-     */
-    public function edit($id)
-    {
-        // $user = user::find($id);
-        // dd($user);
-        // return view('user-edit', compact('user'));
-    }
-
      /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $users)
+      * Update information user.
+      *
+      * @param UserUpdateRequest $request
+      * @return void
+      */
+    public function update(UserUpdateRequest $request,$id)
     {
-        $user = user::find($id);
-        dd($user);
-        return view('user-update', compact('user'));
-         $request->validate([
-            'name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-        ]);
+        $user = user::find($request->id);
+        $user->name=($request['name']);
+        $user->last_name=($request['last_name']);
+        $user->email=($request['email']);
+        $user->phone=($request['phone']);
 
-        // $user = user::find($id);
-        $users->update();
-        // $user->update($request->all(), $user);
-        return redirect()->route('UserUpdate')->with("message","user updated successfully");
+        $user->save();
+        return redirect()->back()->with("message","User information updated successfully");
     }
 
     /**
@@ -82,6 +66,6 @@ class AdminController extends Controller
         $user = user::find($id);
         $user->delete();
 
-        return redirect()->back()->with('message','User deleted successfully');
+        return redirect(route('user.index'))->with('message','User deleted successfully');
     }
 }
