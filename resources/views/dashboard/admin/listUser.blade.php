@@ -23,7 +23,7 @@
                 Add User
             </button>
 
-            <!-- Modal -->
+            <!-- Modal add user -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -127,6 +127,84 @@
                     </div>
                 </div>
             </div>
+            <!-- End Modal -->
+            <!-- Modal update user-->
+            @foreach($users as $user)
+            <div class="modal fade" id="staticBackdrop1{{ $user->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Update User <b>{{ $user->name }}</b></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+                        </div>
+                        <div class="modal-body">
+                            
+                            <!-- Form -->
+                            <form method="post" action="{{ route('userUpdate',$user->id) }}">
+                                @csrf
+                                @method('PUT')
+
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+
+                                        <!-- Name of user-->
+                                        <div class="form-group">
+                                            <input class="form-control" value="{{ $user->id }}" name="id"  type="hidden" >
+                                        
+                                            <input class="form-control @error('name') is-invalid @enderror" value="{{ $user->name }}" name="name"  type="text" >
+                                        </div>
+
+                                        @error('name')
+                                        <div class="alert alert-danger">{{ $message }} </div>
+                                        @enderror
+
+                                    </div>
+                                    <div class="col-12 col-md-6">
+
+                                        <!-- Last Name -->
+                                        <div class="form-group">
+                                            <input class="form-control @error('last_name') is-invalid @enderror" value="{{ $user->last_name }}" name="last_name" type="text">
+                                        </div>
+                                        @error('last_name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-12 col-md-6">
+
+                                        <!-- email -->
+                                        <div class="form-group">
+                                            <input class="form-control @error('email') is-invalid @enderror" value="{{ $user->email }}" name="email" type="email">
+                                        </div>
+                                        @error('email')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-12 col-md-6">
+
+                                        <!-- Phone number -->
+                                        <div class="form-group">
+                                            <input class="form-control @error('phone') is-invalid @enderror" value="{{ $user->phone }}" name="phone" type="phone">
+                                        </div>
+                                        @error('phone')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">Update user</button>
+                                </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            <!-- End Modal -->
 
         </div>
 
@@ -138,7 +216,7 @@
                         <th>Last name</th>
                         <th>Phone</th>
                         <th>Email</th>
-                        {{-- <th>Action</th> --}}
+                        <th style="width:20%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -148,14 +226,27 @@
                         <td>{{ $items->last_name}}</td>
                         <td>{{ $items->phone }}</td>
                         <td>{{ $items->email }}</td>
-                        {{-- <td>{{ $items->created_at }}</td> --}}
+                        <td>
+                            <form action="{{ route('UserDestroy',$items->id) }}" method="post">
+                                <a class="btn btn-primary" href="{{ route('userUpdate',$items->id) }}" data-bs-toggle="modal" data-bs-target="#staticBackdrop1{{ $items->id }}">
+                                    <i class="fas fa-user-edit"></i>
+                                </a>
+
+                            @csrf
+                            @method('DELETE')
+                                <button type="submit" class="btn btn-danger" >
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-
 </div>
 
 @endsection
+
+

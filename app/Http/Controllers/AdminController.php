@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UseraddRequest;
+use App\Http\Requests\User\UserUpdateRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Requests\UseraddRequest;
 use Illuminate\Http\RedirectResponse;
 
 class AdminController extends Controller
@@ -33,5 +35,37 @@ class AdminController extends Controller
 
         return back()->with("message", "The Registration completed");
 
+    }
+
+
+     /**
+      * Update information user.
+      *
+      * @param UserUpdateRequest $request
+      * @return void
+      */
+    public function update(UserUpdateRequest $request,$id)
+    {
+        $user = user::find($request->id);
+        $user->name=($request['name']);
+        $user->last_name=($request['last_name']);
+        $user->email=($request['email']);
+        $user->phone=($request['phone']);
+
+        $user->save();
+        return redirect()->back()->with("message","User information updated successfully");
+    }
+
+    /**
+     *  Remove user.
+     *
+     * @param int $id
+     */
+    public function destroy(int $id)
+    {
+        $user = user::find($id);
+        $user->delete();
+
+        return redirect(route('user.index'))->with('message','User deleted successfully');
     }
 }
