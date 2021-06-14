@@ -65,6 +65,3 @@ route::group(['prefix' => 'dashboard'], function() {
      Route::put('/users-update/{id]',[App\Http\Controllers\AdminController::class,'update'])->name('userUpdate');
 
 });
-
-
-
