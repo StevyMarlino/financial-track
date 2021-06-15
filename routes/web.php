@@ -3,6 +3,7 @@
 // use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
+
+Route::get('/verify',[VerificationController::class, 'verify'])->name('check');
 
 /**
  *
@@ -40,13 +43,14 @@ route::group(['prefix' => 'dashboard'], function() {
     Route::put('/update-basic-information',[App\Http\Controllers\HomeController::class,'updateBasicInformation'])->name('basic.update');
     Route::put('/update-password',[App\Http\Controllers\HomeController::class,'updateSecurityInformation'])->name('password.update');
     Route::get('/users-list',[App\Http\Controllers\AdminController::class,'index'])->name('user.index');
+    Route::get('/details/{id}',[VerificationController::class, 'details'])->name('details');
 
     /**
      * ROUTE ACCOUNTANT
      */
 
-    Route::post('');
     Route::get('/all-domain-registered', [App\Http\Controllers\AccountantController::class, 'showAll'])->name('all-domain-registered');
+    // Route::get('/all-domain-paid', [VerificationController::class, 'showAll'])->name('all-domain-paid');
 
 
     /**
