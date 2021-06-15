@@ -127,7 +127,7 @@
                                         <ul class="dropdown-menu">
                                             <li><a href="{{ route('all-domain-registered') }}"
                                                    class="list-link text-reset dropdown-item"> All domain </a></li>
-                                            {{--                                            <li><a href="" class="list-link text-reset dropdown-item"> Website Ongoing</a></li>--}}
+                                                                                        <li><a href="" class="list-link text-reset dropdown-item"> Invoice Paid</a></li>
                                         </ul>
                                     </li>
                                     {{--                                    <li class="list-item">--}}
