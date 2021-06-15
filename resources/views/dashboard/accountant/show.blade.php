@@ -15,35 +15,33 @@
         <!-- Card -->
         <div class="card card-bleed shadow-light-lg mb-6">
 
-            <div class="table-responsive-md-12">
-                <table id="example" class="table table-striped" style="width:100%">
-                    <thead class="thead-light">
+            <div class="table-responsive-md-12" style="width: 132%">
+                <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
                         <tr>
-                            <th scope="col">Name of Host</th>
-                            <th scope="col">Name of Customers</th>
-{{--                            <th scope="col">Price</th>--}}
-                            <th scope="col">Services</th>
-                            <th scope="col">Register by</th>
-                            <th scope="col">Date</th>
+                            <th>name of Host</th>
+                            <th>name of Customer</th>
+                            <th>Price</th>
+                            <th>Services</th>
+                            <th>Register by</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
-
-                    @foreach($domains as $items)
+                        @foreach($domains as $domain)
                         <tr>
-                            <td>{{ $items->name_host}}</td>
-                            <td>{{ $items->name_customer }}</td>
-{{--                            <td>{{ $items->price }}</td>--}}
-                            <td>{{ $items->service }}</td>
-                            <td>{{ $items->name }}</td>
-                            <td>{{ $items->created_at }}</td>
+                            <td> {{ $domain->name_host}}</td>
+                            <td>{{ $domain->name_customer}}</td>
+                            <td>{{ $domain->price }}</td>
+                            <td>{{ $domain->service }}</td>
+                            <td>{{ $domain->name }}</td>
+                            <td>{{ $domain->created_at }}</td>
                         </tr>
-                    @endforeach
+                        @endforeach
                     </tbody>
                 </table>
 
             </div>
-            {{ $domains->links() }}
         </div>
 
     </div>

@@ -13,7 +13,7 @@
     <div class="col-12 col-md-9">
 
         <!-- Card -->
-        <div class="card card-bleed shadow-light-lg mb-6">
+        <div class="card card-bleed shadow-light-lg mb-6" style="width: 132%">
             <div class="card-header">
 
                 <!-- Heading -->
@@ -117,34 +117,30 @@
 
             </div>
 
-            <div class="table-responsive-md">
-                <table class="table">
-                    <thead class="thead-light">
-                    <tr>
-                        <th scope="col">Name of Host</th>
-                        <th scope="col">Name of Customers</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Services</th>
-                        <th scope="col">Date</th>
-                    </tr>
+            <div class="table-responsive-md" >
+                <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Name of Host</th>
+                            <th>Name of Customer</th>
+                            <th>Price</th>
+                            <th>Services</th>
+                            <th>Date</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    @foreach($domain as $items)
+                        @foreach($domain as $items)
                         <tr>
-
-                            <td>{{ $items->name_host }}</td>
-                            <td>{{ $items->name_customer }}</td>
+                            <td> {{ $items->name_host}}</td>
+                            <td>{{ $items->name_customer}}</td>
                             <td>{{ $items->price }}</td>
                             <td>{{ $items->service }}</td>
                             <td>{{ $items->created_at }}</td>
-
                         </tr>
-                    @endforeach
+                        @endforeach
                     </tbody>
                 </table>
-
             </div>
-            {{ $domain->links() }}
         </div>
 
     </div>
