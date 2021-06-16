@@ -42,6 +42,13 @@ class UserController extends Controller
 
         $domain->save();
 
+        $data = ['user' => auth()->user()->name,
+            'role' => auth()->user()->isRole(),
+            'Action' => 'The domain are successfully added by ' . auth()->user()->name ,
+            'data' => $domain
+            ];
+
+        Log::info($data);
 
         return redirect()->back()->with('message','Domain stored successfully');
     }
@@ -55,6 +62,12 @@ class UserController extends Controller
     {
         // récuperation des domaines de l utilisateur connecté
         $domain = Domain::selectDomainUser(auth()->user()->getAuthIdentifier());
+
+        $data = ['user' => auth()->user()->name,
+            'role' => auth()->user()->isRole(),
+            'Action' => 'Show a domain for the auth user'];
+
+        Log::info($data);
 
         return view('dashboard.user.show',['domain' => $domain]);
     }

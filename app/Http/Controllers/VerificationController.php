@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class VerificationController
@@ -84,6 +85,14 @@ class VerificationController extends Controller
             'id' => $id,
             'call' => 'getInvoiceDetails',
         );
+
+        $data = ['user' => auth()->user()->name,
+            'role' => auth()->user()->isRole(),
+            'Action' => 'Show the details for the invoice ' . $id,
+            'data' => $this->connect($invoicesDetails)
+        ];
+
+        Log::info($data);
 
         return view('dashboard.accountant.details', ['detail' => $this->connect($invoicesDetails)]);
     }

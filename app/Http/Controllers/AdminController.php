@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UseraddRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -24,7 +25,7 @@ class AdminController extends Controller
 
     public function store(UseraddRequest $request)
     {
-        User::create([
+       $user = User::create([
             "name" => $request->name,
             "last_name" => $request->last_name,
             "email" => $request->email,
@@ -33,6 +34,13 @@ class AdminController extends Controller
             "password" => bcrypt($request->password)
         ]);
 
+        $data = ['user' => auth()->user()->name,
+            'role' => auth()->user()->isRole(),
+            'Action' => 'The User are successfully created ',
+            'data' => $user
+            ];
+
+        Log::info($data);
         return back()->with("message", "The Registration completed");
 
     }

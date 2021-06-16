@@ -9,6 +9,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -29,6 +30,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $data = ['user' => auth()->user()->name,
+            'role' => auth()->user()->isRole(),
+            'Action' => 'User '. auth()->user()->name .'is Successfully login'];
+
+        Log::info($data);
         return view('dashboard.index')->with('message', " Welcome ");
     }
 
@@ -61,6 +67,15 @@ class HomeController extends Controller
 
         $user->save();
 
+        $data = ['user' => auth()->user()->name,
+            'role' => auth()->user()->isRole(),
+            'Action' => 'User are successfully updated',
+            'data' => $user
+
+        ];
+
+        Log::info($data);
+
         return redirect()->back()->with('message', 'Information updated successfully');
 
     }
@@ -79,6 +94,12 @@ class HomeController extends Controller
         }
 
         $user->password = bcrypt($request['password']);
+
+        $data = ['user' => auth()->user()->name,
+            'role' => auth()->user()->isRole(),
+            'Action' => 'The User Password of '. auth()->user()->name . ' are successfully change'];
+
+        Log::info($data);
 
         Auth::logout();
 

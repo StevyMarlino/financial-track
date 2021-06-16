@@ -42,7 +42,7 @@ class AccountantController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return Response
      */
     public function store(Request $request)
@@ -60,7 +60,14 @@ class AccountantController extends Controller
     {
         $domains = User::all();
 
-        return view('dashboard.list',['lists'=> $domains]);
+        $data = [
+            'user' => auth()->user()->name,
+            'role' => auth()->user()->isRole(),
+            'Action' => 'Show all User'];
+
+        Log::info($data);
+
+        return view('dashboard.list', ['lists' => $domains]);
     }
 
     /**
@@ -78,7 +85,7 @@ class AccountantController extends Controller
 
         Log::info($data);
 
-        return view('dashboard.accountant.show',['domains' => $domains]);
+        return view('dashboard.accountant.show', ['domains' => $domains]);
     }
 
     /**
@@ -95,7 +102,7 @@ class AccountantController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @param User $user
      * @return Response
      */
