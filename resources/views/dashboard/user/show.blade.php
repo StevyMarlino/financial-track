@@ -66,8 +66,10 @@
                                                     <option disabled selected hidden>PRICE ...</option>
                                                     <option value="10000">10 000 XAF</option>
                                                     <option value="15000">15 000 XAF</option>
+                                                    <option value="20000">20 000 XAF</option>
                                                     <option value="25000">25 000 XAF</option>
                                                     <option value="30000">30 000 XAF</option>
+                                                    <option value="40000">40 000 XAF</option>
                                                     <option value="50000">50 000 XAF</option>
                                                 </select>
                                             </div>
