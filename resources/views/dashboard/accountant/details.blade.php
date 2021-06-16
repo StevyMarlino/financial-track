@@ -9,9 +9,9 @@
 @endsection
 
 @section('content')
-  <div class="container-fluid mt-xl-n15">
+  <div class="container-fluid">
       <div class="row justify-content-end">
-          <div class="col-12 col-md-9">
+          <div class="col-12 col-md-9 mt-xl-n15">
               <div class="card shadow-dark-lg border-light p-md-5 position-relative">
                   <div class="d-flex justify-content-between pb-md-5  border-bottom border-light">
 
