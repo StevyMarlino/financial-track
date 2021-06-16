@@ -28,7 +28,7 @@
                     </thead>
                     <tbody>
                         @foreach($tableauInvoices as $inv)
-                        
+
                         <tr>
                             <td> {{$inv['id']}}</td>
                             <td>{{ $inv['status'] }}</td>
