@@ -22,7 +22,7 @@ class VerificationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'role:user,accountant,admin']);
+        $this->middleware(['auth', 'role:accountant,admin']);
     }
 
     /**
