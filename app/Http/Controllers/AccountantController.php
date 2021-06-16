@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Log;
 
 class AccountantController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['auth', 'role:user,accountant,admin']);
+    }
+
     /**
      * Display a listing of the resource.
      *
