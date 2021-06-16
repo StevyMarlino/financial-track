@@ -9,19 +9,19 @@
 @endsection
 
 @section('content')
-  <div class="container-fluid mt--5">
-      <div class="row justify-content-center">
-          <div class="col-12 col-md-8">
-              <div class="card shadow-soft border-light p-4 p-md-5 position-relative">
-                  <div class="d-flex justify-content-between pb-4 pb-md-5 mb-4 mb-md-5 border-bottom border-light">
+  <div class="container-fluid mt-xl-n15">
+      <div class="row justify-content-end">
+          <div class="col-12 col-md-9">
+              <div class="card shadow-dark-lg border-light p-md-5 position-relative">
+                  <div class="d-flex justify-content-between pb-md-5  border-bottom border-light">
 
                       <div class="col-md-6">
-                          <img src="#" height="90" class="mr-3" alt="GlobexcamLogo"><br>
+                          <img src="{{ asset('img/logo.png')}}" height="90" class="mr-3" alt="GlobexcamLogo" style="width: 62%;height: 72%;margin-left: -4%;margin-top: 1%;"><br>
                           <span>Invoice #{{ $detail['invoice']['id'] }}</span>
                       </div>
 
                       <div class="col-md-3 text-right ">
-                          <span class="text-red font-weight-bold">{{ $detail['invoice']['status'] }}</span>
+                          <span class="text-success font-weight-bold">{{ $detail['invoice']['status'] }}</span>
 
 
                       </div>
@@ -33,7 +33,7 @@
                       </div>
 
                   </div>
-                  <div class="col-md-12 mb-6 justify-content-between">
+                  <div class="col-md-12 mb-2 justify-content-between">
                       <div class="row">
                           <div class="col-md text-left">
                               <h3>Invoice To:</h3>
@@ -96,8 +96,8 @@
                                   </tbody>
                               </table>
                           </div>
-                          <div class="d-flex justify-content-end text-right mb-4 py-2 border-bottom">
-                              <div class="mt-2">
+                          <div class="d-flex justify-content-end text-right border-bottom">
+                              <div class="">
                                   <table class="table table-clear">
                                       <tbody>
                                       <tr>
