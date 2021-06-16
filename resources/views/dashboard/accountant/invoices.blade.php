@@ -31,7 +31,7 @@
 
                         <tr>
                             <td> {{$inv['id']}}</td>
-                            <td class="">{{ $inv['status'] }}</td>
+                            <td>{{ $inv['status'] }}</td>
                             <td>{{ $inv['total']}}</td>
                             <td>{{ $inv['date']}}</td>
                             <td><a href="{{ route('details',$inv['id']) }} " class="btn  btn-primary">View</a>
