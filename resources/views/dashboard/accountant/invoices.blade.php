@@ -35,8 +35,13 @@
                             <td>{{ $inv['total']}}</td>
                             <td>{{ $inv['date']}}</td>
                             <td><a href="{{ route('details',$inv['id']) }} " class="btn  btn-primary">View</a>
-
-                                <a href="{{ route('mark',$inv['id']) }}" class="btn  btn-primary">Mark as Verified</a>
+                                @if( in_array($inv['id'],$domains))
+                                    <a class="btn  btn-success">
+                                        Verified</a>
+                                @else
+                                    <a href="{{ route('mark',$inv['id']) }}" class="btn  btn-warning">Mark as
+                                        Verified</a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

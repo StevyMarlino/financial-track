@@ -36,7 +36,16 @@ class VerificationController extends Controller
         //je recupère les gars qui ont buy, et après en fonction de l'ID de la facture, je sais ce que j'ai à faire
         $ilsOntbuy = $this->getInvoices();
 
-        return view('dashboard.accountant.invoices', ['tableauInvoices' => $ilsOntbuy]);
+        $all_domain_verify = Domain::all()->where('verify', true);
+
+        $data = [];
+
+        foreach($all_domain_verify as $domain) {
+            $data[] = $domain->invoice_id;
+        }
+
+
+        return view('dashboard.accountant.invoices', ['tableauInvoices' => $ilsOntbuy, 'domains' => $data]);
 
     }
 
@@ -80,8 +89,6 @@ class VerificationController extends Controller
     {
 
         $invoicesDetails = $this->invoice_detail($id);
-        $all_domain_not_verify = Domain::all()->where('verify', false);
-
 
         $data = ['user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
@@ -91,7 +98,7 @@ class VerificationController extends Controller
 
         Log::info($data);
 
-        return view('dashboard.accountant.details', ['detail' => $invoicesDetails, 'domains' => $all_domain_not_verify]);
+        return view('dashboard.accountant.details', ['detail' => $invoicesDetails]);
     }
 
     /**

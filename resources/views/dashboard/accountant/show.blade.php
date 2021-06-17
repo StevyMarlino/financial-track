@@ -25,6 +25,7 @@
                         <th>Services</th>
                         <th>Register by</th>
                         <th>Date</th>
+                        <th>action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -42,6 +43,7 @@
                             <td>{{ $domain->service }}</td>
                             <td>{{ $domain->name }}</td>
                             <td>{{ $domain->created_at}}</td>
+                            <td>@if($domain->invoice_id !== 0)<a href="{{ route('details',$domain->invoice_id) }} " class="btn  btn-primary">View</a>@endif</td>
                         </tr>
 
                     @endforeach

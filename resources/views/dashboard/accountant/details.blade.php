@@ -29,14 +29,6 @@
                       <div class="impression">
                           <div class="col-md-3 text-center">
                               <button onclick="window.print();"><i class="fa fa-print" aria-hidden="true" ></i></button>
-                              @foreach($detail['invoice']['items'] as $data)
-                                  @foreach( $domains as $domain)
-                                      @if(str_contains($data['description'],$domain->name_host))
-                                          <a href="{{ route('mark',$detail['id']) }}" class="btn  btn-primary">Mark as
-                                              Verified</a>
-                                      @endif
-                                  @endforeach
-                              @endforeach
                           </div>
                       </div>
 
