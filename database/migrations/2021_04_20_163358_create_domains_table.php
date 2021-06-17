@@ -23,7 +23,7 @@ class CreateDomainsTable extends Migration
             $table->enum('service',['REGISTER','RENEW','SMS']);
             $table->enum('method_payment',['ORANGE MONEY','MTN MONEY','CASH']);
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('invoice_id')->default(null);
+            $table->unsignedBigInteger('invoice_id')->default(0);
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
