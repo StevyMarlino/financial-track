@@ -32,10 +32,10 @@ class HomeController extends Controller
     {
         $data = ['user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
-            'Action' => 'User '. auth()->user()->name .'is Successfully login'];
+            'Action' => 'User ' . auth()->user()->name . 'is Successfully login'];
 
         Log::info($data);
-        return view('dashboard.index')->with('message', " Welcome ");
+        return view('dashboard.index')->with('message', " Welcome " . auth()->user()->name);
     }
 
 
@@ -69,7 +69,7 @@ class HomeController extends Controller
 
         $data = ['user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
-            'Action' => 'User are successfully updated',
+            'Action' => 'User information are successfully updated',
             'data' => $user
 
         ];
@@ -97,7 +97,7 @@ class HomeController extends Controller
 
         $data = ['user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
-            'Action' => 'The User Password of '. auth()->user()->name . ' are successfully change'];
+            'Action' => 'The User Password of ' . auth()->user()->name . ' are successfully change'];
 
         Log::info($data);
 

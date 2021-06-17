@@ -3,14 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\UserUpdateRequest;
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Requests\UseraddRequest;
+use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'role:admin']);
+    }
+
     public function index()
     {
         return view('dashboard.admin.listUser', ['users' => User::all()]);
@@ -25,7 +31,7 @@ class AdminController extends Controller
 
     public function store(UseraddRequest $request)
     {
-       $user = User::create([
+        $user = User::create([
             "name" => $request->name,
             "last_name" => $request->last_name,
             "email" => $request->email,
@@ -37,43 +43,62 @@ class AdminController extends Controller
         $data = ['user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
             'Action' => 'The User are successfully created ',
-            'data' => $user
-            ];
+            'data' => $user,
+            'ip' => $_SERVER['REMOTE_ADDR']
+        ];
 
         Log::info($data);
-        return back()->with("message", "The Registration completed");
+        return back()->with("message", "The User are successfully Created");
 
     }
 
 
-     /**
-      * Update information user.
-      *
-      * @param UserUpdateRequest $request
-      * @return void
-      */
-    public function update(UserUpdateRequest $request,$id)
+    /**
+     * Update information user.
+     *
+     * @param UserUpdateRequest $request
+     * @return RedirectResponse
+     */
+    public function update(UserUpdateRequest $request)
     {
         $user = user::find($request->id);
-        $user->name=($request['name']);
-        $user->last_name=($request['last_name']);
-        $user->email=($request['email']);
-        $user->phone=($request['phone']);
+        $user->name = ($request['name']);
+        $user->last_name = ($request['last_name']);
+        $user->email = ($request['email']);
+        $user->phone = ($request['phone']);
 
         $user->save();
-        return redirect()->back()->with("message","User information updated successfully");
+
+        $data = ['user' => auth()->user()->name,
+            'role' => auth()->user()->isRole(),
+            'Action' => 'The User are successfully Updated ',
+            'data' => $user,
+            'ip' => $_SERVER['REMOTE_ADDR']
+        ];
+
+        Log::info($data);
+        return redirect()->back()->with("message", "User information updated successfully");
     }
 
     /**
      *  Remove user.
      *
      * @param int $id
+     * @return Application|RedirectResponse|Redirector
      */
     public function destroy(int $id)
     {
         $user = user::find($id);
         $user->delete();
 
-        return redirect(route('user.index'))->with('message','User deleted successfully');
+        $data = ['user' => auth()->user()->name,
+            'role' => auth()->user()->isRole(),
+            'Action' => 'The User are successfully deleted ',
+            'data' => $user,
+            'ip' => $_SERVER['REMOTE_ADDR']
+        ];
+
+        Log::info($data);
+        return redirect(route('user.index'))->with('message', 'User deleted successfully');
     }
 }

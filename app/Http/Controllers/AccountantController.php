@@ -63,7 +63,9 @@ class AccountantController extends Controller
         $data = [
             'user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
-            'Action' => 'Show all User'];
+            'Action' => 'Show all User',
+            'ip' => $_SERVER['REMOTE_ADDR']
+            ];
 
         Log::info($data);
 
@@ -81,7 +83,9 @@ class AccountantController extends Controller
 
         $data = ['user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
-            'Action' => 'Show all Domain Name'];
+            'Action' => 'Show all Domain Name',
+            'ip' => $_SERVER['REMOTE_ADDR']
+            ];
 
         Log::info($data);
 

@@ -18,16 +18,16 @@
             <div class="table-responsive-md-12" style="width: 132%">
                 <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                     <thead>
-                        <tr>
-                            <th>Invoice ID </th>
-                            <th>Status</th>
-                            <th>Amount</th>
-                            <th>Date</th>
-                            <th>Action</th>
-                        </tr>
+                    <tr>
+                        <th>Invoice ID</th>
+                        <th>Status</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @foreach($tableauInvoices as $inv)
+                    @foreach($tableauInvoices['invoices'] as $inv)
 
                         <tr>
                             <td> {{$inv['id']}}</td>
@@ -35,9 +35,11 @@
                             <td>{{ $inv['total']}}</td>
                             <td>{{ $inv['date']}}</td>
                             <td><a href="{{ route('details',$inv['id']) }} " class="btn  btn-primary">View</a>
-                                <button class="btn  btn-primary">Mark as Verified</button></td>
+
+                                <a href="{{ route('mark',$inv['id']) }}" class="btn  btn-primary">Mark as Verified</a>
+                            </td>
                         </tr>
-                        @endforeach
+                    @endforeach
                     </tbody>
                 </table>
 
