@@ -25,7 +25,7 @@ class Domain extends Model
             ->join('users', 'users.id', '=', 'domains.user_id')
             ->select('domains.name_host','domains.verify','domains.service','domains.name_customer', 'users.name'
                 ,'domains.price','domains.method_payment','domains.created_at',)
-            ->orderByDesc('created_at')->paginate(5);
+            ->orderByDesc('created_at')->get();
     }
 
     public static function selectDomainUser($user_id)

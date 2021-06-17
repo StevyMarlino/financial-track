@@ -25,7 +25,7 @@ class DomainFactory extends Factory
         return [
             'name_host' => Arr::random(['stevy.com','stevy.net','joe.cm','nyl.fr']),
             'name_customer' => $this->faker->name,
-            'price' => Arr::random(['15000','20000','25000','30000','40000','50000']),
+            'price' => Arr::random(['10000','15000','20000','25000','30000','40000','50000']),
             'service' => Arr::random(['RENEW','REGISTER','SMS']),
             'method_payment' => Arr::random(['ORANGE MONEY','MTN MONEY','CASH']),
         ];

@@ -20,7 +20,6 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/verify',[VerificationController::class, 'verify'])->name('check');
 
 /**
  *
@@ -51,6 +50,8 @@ route::group(['prefix' => 'dashboard'], function() {
 
     Route::get('/all-domain-registered', [App\Http\Controllers\AccountantController::class, 'showAll'])->name('all-domain-registered');
     // Route::get('/all-domain-paid', [VerificationController::class, 'showAll'])->name('all-domain-paid');
+    Route::get('/invoice',[VerificationController::class, 'verify'])->name('check');
+    Route::get('/mark/{id}',[VerificationController::class, 'domain_exist'])->name('mark');
 
 
     /**

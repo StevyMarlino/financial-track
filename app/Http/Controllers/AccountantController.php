@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Log;
 
 class AccountantController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['auth', 'role:user,accountant,admin']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +42,7 @@ class AccountantController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return Response
      */
     public function store(Request $request)
@@ -54,7 +60,16 @@ class AccountantController extends Controller
     {
         $domains = User::all();
 
-        return view('dashboard.list',['lists'=> $domains]);
+        $data = [
+            'user' => auth()->user()->name,
+            'role' => auth()->user()->isRole(),
+            'Action' => 'Show all User',
+            'ip' => $_SERVER['REMOTE_ADDR']
+            ];
+
+        Log::info($data);
+
+        return view('dashboard.list', ['lists' => $domains]);
     }
 
     /**
@@ -68,11 +83,13 @@ class AccountantController extends Controller
 
         $data = ['user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
-            'Action' => 'Show all Domain Name'];
+            'Action' => 'Show all Domain Name',
+            'ip' => $_SERVER['REMOTE_ADDR']
+            ];
 
         Log::info($data);
 
-        return view('dashboard.accountant.show',['domains' => $domains]);
+        return view('dashboard.accountant.show', ['domains' => $domains]);
     }
 
     /**
@@ -89,7 +106,7 @@ class AccountantController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @param User $user
      * @return Response
      */

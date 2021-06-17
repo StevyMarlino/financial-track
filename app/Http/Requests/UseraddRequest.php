@@ -24,12 +24,12 @@ class UseraddRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'              =>      'required|string|max:20',
-            'last_name'         =>      'required|string|max:20',
-            'email'             =>      'required|email|unique:users',
-            'phone'             =>      'required|string',
-            'role'              =>      'required|in:accountant,user|bail',
-            'password'          =>      'required|alpha_num|min:8|confirmed',
+            'name' => 'required|string|max:20',
+            'last_name' => 'required|string|max:20',
+            'email' => 'required|email|unique:users',
+            'phone' => 'required|string',
+            'role' => 'required|in:accountant,user|bail',
+            'password' => 'required|alpha_num|min:8|confirmed',
         ];
     }
 }

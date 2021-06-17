@@ -66,8 +66,10 @@
                                                     <option disabled selected hidden>PRICE ...</option>
                                                     <option value="10000">10 000 XAF</option>
                                                     <option value="15000">15 000 XAF</option>
+                                                    <option value="20000">20 000 XAF</option>
                                                     <option value="25000">25 000 XAF</option>
                                                     <option value="30000">30 000 XAF</option>
+                                                    <option value="40000">40 000 XAF</option>
                                                     <option value="50000">50 000 XAF</option>
                                                 </select>
                                             </div>
@@ -131,7 +133,9 @@
                     <tbody>
                         @foreach($domain as $items)
                         <tr>
-                            <td> {{ $items->name_host}}</td>
+                            <td> {{ $items->name_host}} @if($items->verify) <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+                                </svg> @endif</td>
                             <td>{{ $items->name_customer}}</td>
                             <td>{{ $items->price }}</td>
                             <td>{{ $items->service }}</td>
