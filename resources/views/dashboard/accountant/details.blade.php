@@ -10,7 +10,7 @@
 
 @section('content')
   <div class="container-fluid">
-      <div class="row justify-content-end">
+      <div class="row justify-content-end printMe">
           <div class="col-12 col-md-9 mt-xl-n15">
               <div class="card shadow-dark-lg border-light p-md-5 position-relative">
                   <div class="d-flex justify-content-between pb-md-5  border-bottom border-light">
@@ -158,4 +158,20 @@
       </div>
   </div>
 
+   <style>
+    @media print {
+        body * {
+          visibility: hidden;
+        }
+        .printMe * {
+         visibility: visible;
+        }
+        .impression * {
+            visibility: hidden;
+        }
+        .payNow * {
+             visibility: hidden;
+        }
+    }
+</style>
 @endsection
