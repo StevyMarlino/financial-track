@@ -20,7 +20,7 @@
                     <thead>
                         <tr>
                             <th>Invoice ID </th>
-                            <th>Status</th>
+                            <th>Status</th> 
                             <th>Amount</th>
                             <th>Date</th>
                             <th>Action</th>
