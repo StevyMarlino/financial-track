@@ -80,6 +80,7 @@
                                   <tbody>
                                   <tr>
                                       <th scope="row" class="text-left font-weight-bold h6">Description</th>
+                                      <th scope="row" class="text-left font-weight-bold h6">Type of transaction</th>
                                       <td class="font-weight-bold text-right">Amount</td>
                                   </tr>
                                   @foreach($detail['invoice']['items'] as $item)
@@ -87,6 +88,9 @@
                                       <tr>
                                           <th scope="row"
                                               class="text-left font-weight-bold h6">{{ $item['description'] }} *
+                                          </th>
+                                          <th scope="row"
+                                              class="text-left font-weight-bold h6">{{ $item['type'] }} *
                                           </th>
                                           <td class="text-right">{{ number_format($item['amount']) }} XAF</td>
                                       </tr>
