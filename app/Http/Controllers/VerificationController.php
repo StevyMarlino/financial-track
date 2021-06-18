@@ -34,10 +34,8 @@ class VerificationController extends Controller
      */
     public function verify()
     {
-        //je recupère les gars qui ont buy, et après en fonction de l'ID de la facture, je sais ce que j'ai à faire
-        $ilsOntbuy = $this->getInvoices();
-
-        $all_domain_verify = Domain::all()->where('verify', true);
+        //je recupere les domaines verifer dans notre database
+        $all_domain_verify = Domain::domain_verify();
 
         $data = [];
 
@@ -45,8 +43,7 @@ class VerificationController extends Controller
             $data[] = $domain->invoice_id;
         }
 
-
-        return view('dashboard.accountant.invoices', ['tableauInvoices' => $ilsOntbuy, 'domains' => $data]);
+        return view('dashboard.accountant.invoices', ['tableauInvoices' => $this->getInvoices(), 'domains' => $data]);
 
     }
 
@@ -63,22 +60,8 @@ class VerificationController extends Controller
             'list' => 'paid'
         );
 
-        $getInvoices = $this->connect($invoices);
-
-        // il peut toujours avoir un truc qui peut se passer en route. donc... je verifie un truc avant!
-        if (!isset($getInvoices['success']) || !$getInvoices['success']) {
-            $data = [
-                'success' => $getInvoices['success'],
-                'status' => 'denied',
-                'message' => "An error occured. Please try again later.",
-            ];
-            //en principe on doit créer un vu d'érreur ici. mais pour l'instant je fais d'abord ca.
-            return response()->json($data);
-        }
-
-
         //a ce niveau j'ai déjà les invoices des gars qui ont buy
-        return $getInvoices;
+        return $this->connect($invoices);
     }
 
 
@@ -162,7 +145,7 @@ class VerificationController extends Controller
     private function mark_as_verify($string, $id, $due_date): bool
     {
         if (!$this->is_already_mark($string)) {
-            $all_domain_not_verify = Domain::all()->where('verify', false);
+            $all_domain_not_verify = Domain::domain_not_verify();
 
             foreach ($all_domain_not_verify as $domain) {
                 if (str_contains($string, $domain->name_host)) {
@@ -187,7 +170,7 @@ class VerificationController extends Controller
      */
     private function is_already_mark($string): bool
     {
-        $all_domain_verify = Domain::all()->where('verify', true);
+        $all_domain_verify = Domain::domain_verify();
 
         foreach ($all_domain_verify as $domain) {
             if (str_contains($string, $domain->name_host)) {
@@ -200,13 +183,14 @@ class VerificationController extends Controller
 
     private function is_due_date()
     {
-        $all_domain_verify = Domain::all()->where('verify', true);
+        $all_domain_verify = Domain::domain_verify();
 
         foreach ($all_domain_verify as $domain) {
             if ($domain->due_date == date('Y-m-d')) {
                 $update_verification = Domain::find($domain->id);
 
                 $update_verification->verify = false;
+                $update_verification->service = 'RENEW';
 
                 $update_verification->save();
             }
