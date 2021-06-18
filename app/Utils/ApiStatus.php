@@ -23,11 +23,14 @@ class ApiStatus
     }
 
 
-    public static function ok(string $message = ""){
-        return new self(self::STATUS_OK,$message);
+    public static function ok(string $message = "")
+    {
+        return new self(self::STATUS_OK, $message);
     }
-    public static function err(string $message = ""){
-        return new self(self::STATUS_ERR,$message);
+
+    public static function err(string $message = "")
+    {
+        return new self(self::STATUS_ERR, $message);
     }
 
     /**
