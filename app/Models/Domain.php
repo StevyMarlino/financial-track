@@ -10,7 +10,7 @@ class Domain extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name_host', 'name_customer', 'price', 'service','method_payment','user_id','verify','invoice_id'];
+    protected $fillable = ['name_host', 'name_customer', 'price', 'service','method_payment','user_id','verify','invoice_id','due_date'];
 
 
     public function users()
@@ -24,7 +24,7 @@ class Domain extends Model
         return DB::table('domains')
             ->join('users', 'users.id', '=', 'domains.user_id')
             ->select('domains.name_host','domains.verify','domains.service','domains.name_customer', 'users.name'
-                ,'domains.price','domains.method_payment','domains.created_at','domains.invoice_id')
+                ,'domains.price','domains.method_payment','domains.created_at','domains.invoice_id','domains.due_date')
             ->orderByDesc('created_at')->get();
     }
 

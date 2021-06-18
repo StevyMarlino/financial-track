@@ -25,6 +25,7 @@ class VerificationController extends Controller
     public function __construct()
     {
         $this->middleware(['auth', 'role:accountant,admin']);
+        $this->is_due_date();
     }
 
     /**
@@ -40,7 +41,7 @@ class VerificationController extends Controller
 
         $data = [];
 
-        foreach($all_domain_verify as $domain) {
+        foreach ($all_domain_verify as $domain) {
             $data[] = $domain->invoice_id;
         }
 
@@ -98,6 +99,7 @@ class VerificationController extends Controller
 
         Log::info($data);
 
+
         return view('dashboard.accountant.details', ['detail' => $invoicesDetails]);
     }
 
@@ -136,9 +138,11 @@ class VerificationController extends Controller
         $ma_chaine = "";
         foreach ($domain_want_to_verify['invoice']['items'] as $item) {
             $ma_chaine = strtolower($item['description']);
+
         }
 
-        $verify = $this->mark_as_verify($ma_chaine, $id);
+        $due_date = $domain_want_to_verify['invoice']['date'];
+        $verify = $this->mark_as_verify($ma_chaine, $id, $due_date);
 
         if ($verify) {
             return redirect()->back()->with('message', 'Le Domaine a été marqué comme vérifier');
@@ -152,9 +156,10 @@ class VerificationController extends Controller
      * function qui s occupe de marquer un domaine comme verifier
      * @param $string
      * @param $id
+     * @param $due_date
      * @return bool
      */
-    private function mark_as_verify($string, $id): bool
+    private function mark_as_verify($string, $id, $due_date): bool
     {
         if (!$this->is_already_mark($string)) {
             $all_domain_not_verify = Domain::all()->where('verify', false);
@@ -164,6 +169,7 @@ class VerificationController extends Controller
                     $update_domain = Domain::find($domain->id);
                     $update_domain->verify = true;
                     $update_domain->invoice_id = $id;
+                    $update_domain->due_date = $due_date;
                     $update_domain->save();
 
                     return true;
@@ -190,5 +196,20 @@ class VerificationController extends Controller
         }
 
         return false;
+    }
+
+    private function is_due_date()
+    {
+        $all_domain_verify = Domain::all()->where('verify', true);
+
+        foreach ($all_domain_verify as $domain) {
+            if ($domain->due_date == date('Y-m-d')) {
+                $update_verification = Domain::find($domain->id);
+
+                $update_verification->verify = false;
+
+                $update_verification->save();
+            }
+        }
     }
 }
