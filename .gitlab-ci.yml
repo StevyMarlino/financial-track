@@ -1,0 +1,40 @@
+image: jakzal/phpqa:php7.4
+
+before_script:
+  - php -r "file_exists('.env') || copy('.env.example', '.env');"
+  - composer install
+  - php artisan key:generate
+  - chmod -R 777 storage bootstrap/cache
+
+cache:
+  paths:
+    - vendor/
+
+stages:
+  - SecurityChecker
+  - CodingStandards
+  - UnitTests
+
+security-checker:
+  stage: SecurityChecker
+  script:
+    - local-php-security-checker composer.lock
+  allow_failure: false
+
+phpcs:
+  stage: CodingStandards
+  script:
+    - phpcs -v --standard=PSR2 --ignore=./app/Console/Kernel.php ./app/Http/Middleware ./app/Http/Kernel.php
+  allow_failure: true
+
+phpstan:
+  stage: CodingStandards
+  script:
+    - phpstan analyse ./app/Http
+  allow_failure: true
+
+phpunit:
+  stage: UnitTests
+  script:
+    - php artisan test
+  allow_failure: false
