@@ -13,7 +13,7 @@
 <div class="col-12 col-md-9">
 
     <!-- Card -->
-    <div class="card card-bleed shadow-light-lg mb-6" style="width: 132%">
+    <div class="card card-bleed shadow-light-lg mb-6" style="width: 134%">
         <div class="card-header">
 
             <!-- Heading -->
@@ -138,7 +138,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
                         </div>
                         <div class="modal-body">
-                            
+
                             <!-- Form -->
                             <form method="post" action="{{ route('userUpdate',$user->id) }}">
                                 @csrf
@@ -150,7 +150,7 @@
                                         <!-- Name of user-->
                                         <div class="form-group">
                                             <input class="form-control" value="{{ $user->id }}" name="id"  type="hidden" >
-                                        
+
                                             <input class="form-control @error('name') is-invalid @enderror" value="{{ $user->name }}" name="name"  type="text" >
                                         </div>
 
@@ -198,7 +198,7 @@
                                     <button type="submit" class="btn btn-success">Update user</button>
                                 </div>
                             </form>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -210,12 +210,12 @@
 
         <div class="table-responsive-md" >
             <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-                <thead>
+                <thead class="thead-light">
                     <tr>
-                        <th>Name </th>
-                        <th>Last name</th>
-                        <th>Phone</th>
-                        <th>Email</th>
+                        <th scope="col">Name </th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Email</th>
                         <th style="width:20%">Action</th>
                     </tr>
                 </thead>

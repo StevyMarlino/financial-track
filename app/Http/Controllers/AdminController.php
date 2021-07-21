@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\User\UserUpdateRequest;
-use App\Http\Requests\UseraddRequest;
 use App\Models\User;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\UseraddRequest;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\User\UserUpdateRequest;
+use Illuminate\Contracts\Foundation\Application;
 
 class AdminController extends Controller
 {
@@ -91,7 +91,8 @@ class AdminController extends Controller
         $user = user::find($id);
         $user->delete();
 
-        $data = ['user' => auth()->user()->name,
+        $data = [
+            'user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
             'Action' => 'The User are successfully deleted ',
             'data' => $user,

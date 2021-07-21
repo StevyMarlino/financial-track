@@ -48,7 +48,7 @@ class HomeController extends Controller
             'Action' => 'User ' . auth()->user()->name . 'is Successfully login'];
 
         Log::info($data);
-        return view('dashboard.index', $datas)->with('message', " Welcome " . auth()->user()->name);
+        return view('layouts.dashboard', $datas)->with('message', " Welcome " . auth()->user()->name);
     }
 
 
