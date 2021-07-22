@@ -26,7 +26,7 @@ class AdminController extends Controller
             'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
             'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
             'domain_verify' => count(Domain::domain_verify()),
-            'domain_paid' => count(Api::getInvoices()) ,
+            'domain_paid' => count(Api::getInvoices())
         ];
         return view('dashboard.admin.listUser',$data, ['users' => User::all()]);
     }

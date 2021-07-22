@@ -183,7 +183,7 @@
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
         <a class="navbar-brand" href="javascript:void(0)">
-          <img src="/assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+          <img src="/assets/img/brand/aa.jpg" class="navbar-brand-img" alt="...">
         </a>
       </div>
       <div class="navbar-inner">
@@ -328,7 +328,7 @@
                     <img alt="Image placeholder" src="/assets/img/theme/team-4.jpg">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->email }}</span>
+                    <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>
                   </div>
                 </div>
               </a>
