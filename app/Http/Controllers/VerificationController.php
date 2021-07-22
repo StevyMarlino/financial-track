@@ -43,26 +43,10 @@ class VerificationController extends Controller
             $data[] = $domain->invoice_id;
         }
 
-        return view('dashboard.accountant.invoices', ['tableauInvoices' => $this->getInvoices(), 'domains' => $data]);
+        return view('dashboard.accountant.invoices', ['tableauInvoices' => Api::getInvoices(), 'domains' => $data]);
 
     }
 
-    // la fonction ci c'est pour recupérer les invoices d'un utilisateurs
-
-    /**
-     * @return array|JsonResponse
-     */
-    private function getInvoices()
-    {
-
-        $invoices = array(
-            'call' => 'getInvoices',
-            'list' => 'paid'
-        );
-
-        //a ce niveau j'ai déjà les invoices des gars qui ont buy
-        return $this->connect($invoices);
-    }
 
 
     /**
@@ -72,7 +56,7 @@ class VerificationController extends Controller
     public function details($id)
     {
 
-        $invoicesDetails = $this->invoice_detail($id);
+        $invoicesDetails = Api::invoice_detail($id);
 
         $data = ['user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
@@ -85,30 +69,6 @@ class VerificationController extends Controller
 
         return view('dashboard.accountant.details', ['detail' => $invoicesDetails]);
     }
-
-    /**
-     * @param $query
-     * @return array|bool|string
-     */
-    private function connect($query)
-    {
-        return Api::requestApi(Api::addApiAccess($query), ApiConst::url);
-    }
-
-    /**
-     * @param $id
-     * @return array|bool|string
-     */
-    private function invoice_detail($id)
-    {
-        $invoicesDetails = array(
-            'id' => $id,
-            'call' => 'getInvoiceDetails',
-        );
-
-        return $this->connect($invoicesDetails);
-    }
-
     /**
      * @param $id
      * @return RedirectResponse
@@ -116,7 +76,7 @@ class VerificationController extends Controller
     public function domain_exist($id)
     {
 
-        $domain_want_to_verify = $this->invoice_detail($id);
+        $domain_want_to_verify = Api::invoice_detail($id);
 
         $ma_chaine = "";
         foreach ($domain_want_to_verify['invoice']['items'] as $item) {

@@ -10,13 +10,13 @@
 
 @section('content')
 
-    <div class="col-12 col-md-9">
+    <div class="col-12 col-md-12">
 
         <!-- Card -->
         <div class="card card-bleed shadow-light-lg mb-6">
 
-            <div class="table-responsive-md-12" style="width: 132%">
-                <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+            <div class="table-responsive-md-12" style="width: 99%;padding: 1%;">
+                <table id="datatable" class="table table-striped table-bordered" style="width:100% " >
                     <thead>
                     <tr>
                         <th>name of Host</th>

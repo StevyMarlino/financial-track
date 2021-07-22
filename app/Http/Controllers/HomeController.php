@@ -40,7 +40,7 @@ class HomeController extends Controller
             'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
             'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
             'domain_verify' => count(Domain::domain_verify()),
-            'domain_paid' => $this->getInvoices() ,
+            'domain_paid' => count(Api::getInvoices()) ,
         ];
 
         $data = ['user' => auth()->user()->name,
@@ -60,7 +60,14 @@ class HomeController extends Controller
      */
     public function settings()
     {
-        return view('dashboard.settings');
+        $data = [
+            'sale_of_last_month' => number_format(Domain::sale_of_last_month()),
+            'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
+            'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
+            'domain_verify' => count(Domain::domain_verify()),
+            'domain_paid' => count(Api::getInvoices()) ,
+        ];
+        return view('dashboard.settings',$data);
     }
 
 
@@ -124,25 +131,5 @@ class HomeController extends Controller
 
     }
 
-    /**
-     * @param $query
-     * @return array|bool|string
-     */
-    private function connect($query)
-    {
-        return Api::requestApi(Api::addApiAccess($query), ApiConst::url);
-    }
-
-
-    private function getInvoices()
-    {
-        $invoices = array(
-            'call' => 'getInvoices',
-            'list' => 'paid'
-        );
-
-        //a ce niveau j'ai déjà les invoices des gars qui ont buy
-        return count($this->connect($invoices)['invoices']);
-    }
 
 }
