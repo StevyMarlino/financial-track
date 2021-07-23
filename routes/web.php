@@ -49,9 +49,15 @@ route::group(['prefix' => 'dashboard'], function() {
      */
 
     Route::get('/all-domain-registered', [App\Http\Controllers\AccountantController::class, 'showAll'])->name('all-domain-registered');
+    Route::get('/all-domain-starter', [App\Http\Controllers\AccountantController::class, 'showStarter'])->name('all-domain-starter');
+    Route::get('/all-domain-business', [App\Http\Controllers\AccountantController::class, 'showBusiness'])->name('all-domain-business');
+    Route::get('/all-domain-premium', [App\Http\Controllers\AccountantController::class, 'showPremium'])->name('all-domain-premium');
+    Route::get('/all-domain-ultimate', [App\Http\Controllers\AccountantController::class, 'showUltimate'])->name('all-domain-ultimate');
     // Route::get('/all-domain-paid', [VerificationController::class, 'showAll'])->name('all-domain-paid');
     Route::get('/invoice',[VerificationController::class, 'verify'])->name('check');
     Route::get('/mark/{id}',[VerificationController::class, 'domain_exist'])->name('mark');
+    Route::get('/prevision',[App\Http\Controllers\AccountantController::class, 'Prevision'])->name('prevision');
+
 
 
     /**

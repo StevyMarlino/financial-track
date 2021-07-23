@@ -100,6 +100,120 @@ class AccountantController extends Controller
     }
 
     /**
+     * show view for all the domain Starter
+     *
+     * @return void
+     */
+    public function showStarter()
+    {
+        $domains = Domain::selectStarterDomain();
+
+        $data = [
+            'sale_of_last_month' => number_format(Domain::sale_of_last_month()),
+            'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
+            'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
+            'domain_verify' => count(Domain::domain_verify()),
+            'domain_paid' => count(Api::getInvoices()) ,
+            'user' => auth()->user()->name,
+            'role' => auth()->user()->isRole(),
+            'Action' => 'Show all Domain Name',
+            'ip' => $_SERVER['REMOTE_ADDR']
+            ];
+
+        Log::info($data);
+
+        return view('dashboard.accountant.starter',$data ,['domains' => $domains]);
+    }
+
+    /**
+     * show view for all the domain Business
+     *
+     * @return void
+     */
+    public function showBusiness()
+    {
+        $domains = Domain::selectBusinessDomain();
+
+        $data = [
+            'sale_of_last_month' => number_format(Domain::sale_of_last_month()),
+            'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
+            'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
+            'domain_verify' => count(Domain::domain_verify()),
+            'domain_paid' => count(Api::getInvoices()) ,
+            'user' => auth()->user()->name,
+            'role' => auth()->user()->isRole(),
+            'Action' => 'Show all Domain Name',
+            'ip' => $_SERVER['REMOTE_ADDR']
+            ];
+
+        Log::info($data);
+
+        return view('dashboard.accountant.business',$data ,['domains' => $domains]);
+    }
+
+    /**
+     * show view for all the domain Premium
+     *
+     * @return void
+     */
+    public function showPremium()
+    {
+        $domains = Domain::selectPremiumDomain();
+
+        $data = [
+            'sale_of_last_month' => number_format(Domain::sale_of_last_month()),
+            'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
+            'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
+            'domain_verify' => count(Domain::domain_verify()),
+            'domain_paid' => count(Api::getInvoices()) ,
+            'user' => auth()->user()->name,
+            'role' => auth()->user()->isRole(),
+            'Action' => 'Show all Domain Name',
+            'ip' => $_SERVER['REMOTE_ADDR']
+            ];
+
+        Log::info($data);
+
+        return view('dashboard.accountant.premium',$data ,['domains' => $domains]);
+    }
+
+    /**
+     * show view for all the domain Ultimate
+     *
+     * @return void
+     */
+    public function showUltimate()
+    {
+        $domains = Domain::selectUltimateDomain();
+
+        $data = [
+            'sale_of_last_month' => number_format(Domain::sale_of_last_month()),
+            'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
+            'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
+            'domain_verify' => count(Domain::domain_verify()),
+            'domain_paid' => count(Api::getInvoices()) ,
+            'user' => auth()->user()->name,
+            'role' => auth()->user()->isRole(),
+            'Action' => 'Show all Domain Name',
+            'ip' => $_SERVER['REMOTE_ADDR']
+            ];
+
+        Log::info($data);
+
+        return view('dashboard.accountant.ultimate',$data ,['domains' => $domains]);
+    }
+
+    /**
+     * show view for all the domain prevision
+     *
+     * @return void
+     */
+    public function Prevision()
+    {
+
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param User $user

@@ -27,6 +27,7 @@ class DomainFactory extends Factory
             'name_customer' => $this->faker->name,
             'price' => Arr::random(['10000','15000','20000','25000','30000','40000','50000']),
             'service' => Arr::random(['RENEW','REGISTER','SMS']),
+            'type' => Arr::random(['STARTER','BUSINESS','PREMIUM','ULTIMATE']),
             'method_payment' => Arr::random(['ORANGE MONEY','MTN MONEY','CASH']),
         ];
     }

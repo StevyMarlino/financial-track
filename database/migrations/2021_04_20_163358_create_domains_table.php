@@ -22,6 +22,7 @@ class CreateDomainsTable extends Migration
             $table->boolean('verify')->default(false);
             $table->enum('price',['10000','15000','20000','25000','30000','40000','50000']);
             $table->enum('service',['REGISTER','RENEW','SMS']);
+            $table->enum('type',['STARTER','BUSINESS','PREMIUM','ULTIMATE']);
             $table->enum('method_payment',['ORANGE MONEY','MTN MONEY','CASH']);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('invoice_id')->default(0);

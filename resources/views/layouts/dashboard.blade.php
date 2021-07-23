@@ -226,22 +226,48 @@
                                 <div class="collapse" id="navbar-cloudhost" style="">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                    <a href="{{ route('all-domain-registered') }}" class="nav-link">
-                                        <span class="sidenav-normal"> All domain </span>
-                                    </a>
+                                      <a href="{{ route('all-domain-registered') }}" class="nav-link">
+                                          <span class="sidenav-normal"> All domain </span>
+                                      </a>
                                     </li>
                                     <li class="nav-item">
-                                    <a href="{{ route('check') }}" class="nav-link">
-                                        <span class="sidenav-normal"> Invoice Paid </span>
-                                    </a>
+                                      <a href="{{ route('all-domain-starter') }}" class="nav-link">
+                                          <span class="sidenav-normal"> List Domain Starter </span>
+                                      </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('all-domain-business') }}" class="nav-link">
+                                            <span class="sidenav-normal"> List Domain Business </span>
+                                        </a>
+                                      </li>
+                                    <li class="nav-item">
+                                      <a href="{{ route('all-domain-premium') }}" class="nav-link">
+                                          <span class="sidenav-normal"> List Domain Premium </span>
+                                      </a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a href="{{ route('all-domain-ultimate') }}" class="nav-link">
+                                          <span class="sidenav-normal"> List Domain Ultimate </span>
+                                      </a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a href="{{ route('check') }}" class="nav-link">
+                                          <span class="sidenav-normal"> Invoice Paid </span>
+                                      </a>
                                     </li>
                                 </ul>
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a href="../../pages/examples/register.html" class="nav-link">
+                                <a href="#" class="nav-link">
                                     <i class="ni ni-palette text-red"></i>
                                     <span class="sidenav-normal"> Pixel </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="ni ni-palette text-red"></i>
+                                    <span class="sidenav-normal"> Payam </span>
                                 </a>
                             </li>
                         </ul>
@@ -259,18 +285,25 @@
 
                 @endif
             @endif
+
+            @if( auth()->user()->isAccountant() or auth()->user()->isAdmin())
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('prevision') }}">
+                <i class="ni ni-planet text-orange"></i>
+                <span class="nav-link-text">Previsions</span>
+              </a>
+            </li>
+
+            @endif
+
             <li class="nav-item">
               <a class="nav-link" href="{{ route('setting') }}">
                 <i class="ni ni-key-25 text-info"></i>
                 <span class="nav-link-text">Setting</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('logout') }}">
-                <i class="ni ni-circle-08 text-pink"></i>
-                <span class="nav-link-text">LOGOUT</span>
-              </a>
-            </li>
+
           </ul>
           <!-- Divider -->
           <hr class="my-3">
@@ -431,7 +464,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Users</h5>
                       <span class="h2 font-weight-bold mb-0">924</span>
                     </div>
                     <div class="col-auto">

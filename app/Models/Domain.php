@@ -10,7 +10,7 @@ class Domain extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name_host', 'name_customer', 'price', 'service', 'method_payment', 'user_id', 'verify', 'invoice_id', 'due_date'];
+    protected $fillable = ['name_host', 'name_customer', 'price', 'service', 'method_payment', 'user_id', 'verify', 'invoice_id', 'due_date', 'type'];
 
 
     public function users()
@@ -24,7 +24,7 @@ class Domain extends Model
         return DB::table('domains')
             ->join('users', 'users.id', '=', 'domains.user_id')
             ->select('domains.name_host', 'domains.verify', 'domains.service', 'domains.name_customer', 'users.name'
-                , 'domains.price', 'domains.method_payment', 'domains.created_at', 'domains.invoice_id', 'domains.due_date')
+                , 'domains.price', 'domains.method_payment', 'domains.created_at', 'domains.invoice_id', 'domains.due_date', 'domains.type')
             ->orderByDesc('created_at')->get();
     }
 
@@ -33,7 +33,51 @@ class Domain extends Model
         return DB::table('domains')
             ->where('user_id', $user_id)
             ->orderByDesc('created_at')
-            ->paginate(5);
+            ->get();
+    }
+
+    public static function selectStarterDomain()
+    {
+        return DB::table('domains')
+            ->join('users', 'users.id', '=', 'domains.user_id')
+            ->select('domains.name_host', 'domains.verify', 'domains.service', 'domains.name_customer', 'users.name'
+                , 'domains.price', 'domains.method_payment', 'domains.created_at', 'domains.invoice_id', 'domains.due_date', 'domains.type')
+                ->where('domains.type', 'STARTER')
+            ->orderByDesc('created_at')
+            ->get();
+    }
+
+    public static function selectBusinessDomain()
+    {
+        return DB::table('domains')
+            ->join('users', 'users.id', '=', 'domains.user_id')
+            ->select('domains.name_host', 'domains.verify', 'domains.service', 'domains.name_customer', 'users.name'
+                , 'domains.price', 'domains.method_payment', 'domains.created_at', 'domains.invoice_id', 'domains.due_date', 'domains.type')
+                ->where('domains.type', 'BUSINESS')
+            ->orderByDesc('created_at')
+            ->get();
+    }
+
+    public static function selectPremiumDomain()
+    {
+        return DB::table('domains')
+            ->join('users', 'users.id', '=', 'domains.user_id')
+            ->select('domains.name_host', 'domains.verify', 'domains.service', 'domains.name_customer', 'users.name'
+                , 'domains.price', 'domains.method_payment', 'domains.created_at', 'domains.invoice_id', 'domains.due_date', 'domains.type')
+                ->where('domains.type', 'PREMIUM')
+            ->orderByDesc('created_at')
+            ->get();
+    }
+
+    public static function selectUltimateDomain()
+    {
+        return DB::table('domains')
+            ->join('users', 'users.id', '=', 'domains.user_id')
+            ->select('domains.name_host', 'domains.verify', 'domains.service', 'domains.name_customer', 'users.name'
+                , 'domains.price', 'domains.method_payment', 'domains.created_at', 'domains.invoice_id', 'domains.due_date', 'domains.type')
+                ->where('domains.type', 'ULTIMATE')
+            ->orderByDesc('created_at')
+            ->get();
     }
 
     public static function sale_of_last_month()
@@ -72,6 +116,10 @@ class Domain extends Model
     {
         $sale_of_current_month = self::sale_of_current_month();
         $sale_of_last_month = self::sale_of_last_month();
+
+        if($sale_of_last_month == 0){
+            return $sale_of_last_month = 0;
+        }
 
         return ($sale_of_last_month - $sale_of_current_month) / $sale_of_last_month;
     }

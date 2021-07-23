@@ -1,11 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    All Domain Registered
+    All Domain Premium
 @endsection
 
 @section('heading')
-    All Domain Registered
+    All Domain Premium
 @endsection
 
 @section('content')
