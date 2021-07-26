@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Utils\Api;
 use App\Models\User;
 use App\Models\Domain;
@@ -208,24 +209,69 @@ class AccountantController extends Controller
      *
      * @return void
      */
-    public function Prevision()
+    public function Prevision(Request $request)
     {
         $domains = Domain::selectUltimateDomain();
+        $date = $request->get("date");
+        $prevision = [
+            "nextYearRenewal" => 0,
+            "totalRegistration" => 0,
+            "totalRenewal" => 0
+        ];
+        if ($date) {
+            [$year, $month] = explode("-", $date);
+            $selectedMonthRegistrations =  Domain::findByTypeAndMonth("REGISTER", new DateTime("1-$month-$year"));
+            $totalRegistration =  $selectedMonthRegistrations->reduce(function ($t, $registration) {
+                return $t + $registration->price;
+            });
+            $nextYearRenewalTotal =  $selectedMonthRegistrations->reduce(function ($t, $registration) {
+                $type = $registration->type;
+                $renewPrice = 0;
+                switch ($type) {
+                    case 'STARTER':
+                        $renewPrice = 25000;
+                        break;
+                    case 'BUSINESS':
+                        $renewPrice = 30000;
+                        break;
+                    case 'PREMIUM':
+                        $renewPrice = 40000;
+                        break;
+                    case 'ULTIMATE':
+                        $renewPrice = 50000;
+                        break;
+                    default:
+                        $renewPrice = 0;
+                        break;
+                }
+                return $t + $renewPrice;
+            });
+            $selectedMonthRenewals =  Domain::findByTypeAndMonth("RENEW", new DateTime("1-$month-$year"));
+            $totalRenewal =  $selectedMonthRenewals->reduce(function ($t, $registration) {
+                return $t + $registration->price;
+            });
+			dd($totalRenewal, $nextYearRenewalTotal, $totalRegistration);
+            $prevision = [
+                "nextYearRenewal" => $nextYearRenewalTotal,
+                "totalRegistration" => $totalRegistration,
+                "totalRenewal" => $totalRenewal
+            ];
+        }
 
         $data = [
             'sale_of_last_month' => number_format(Domain::sale_of_last_month()),
             'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
             'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
             'domain_verify' => count(Domain::domain_verify()),
-            'domain_paid' => count(Api::getInvoices()) ,
+            'domain_paid' => count(Api::getInvoices()),
             'user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
             'Action' => 'Show all Domain Name',
-            'ip' => $_SERVER['REMOTE_ADDR']
-            ];
-
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            "prevision" => $prevision
+        ];
         Log::info($data);
-        return view('dashboard.accountant.prevision',$data , ['domains' => $domains]);
+        return view('dashboard.accountant.prevision', $data, ['domains' => $domains]);
     }
 
     /**

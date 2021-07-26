@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use DateTime;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Domain extends Model
 {
@@ -143,6 +144,17 @@ class Domain extends Model
     public static function domain_not_verify()
     {
         return Domain::all()->where('verify', false);
+    }
+
+    public static function findByTypeAndMonth(string $type, DateTime $date)
+    {
+        $next = clone $date;
+        $next->modify("-1 seconds")->modify("+1 month")->modify('last day of this month');
+        return Domain::where("service", "=", $type)
+            ->whereDate("created_at", ">", $date)
+            ->whereDate("created_at", "<=", $next)
+            ->orderBy("created_at")
+            ->get();
     }
 
 }
