@@ -80,6 +80,17 @@ class Domain extends Model
             ->get();
     }
 
+    public static function selectCountDomain()
+    {
+        return DB::table('domains')
+            ->join('users', 'users.id', '=', 'domains.user_id')
+            ->select('domains.name_host', 'domains.verify', 'domains.service', 'domains.name_customer', 'users.name'
+                , 'domains.price', 'domains.method_payment', 'domains.created_at', 'domains.invoice_id', 'domains.due_date', 'domains.type')
+                ->where('domains.type', 'ULTIMATE')
+            ->orderByDesc('created_at')
+            ->get();
+    }
+
     public static function sale_of_last_month()
     {
         $sales = DB::table('domains')
