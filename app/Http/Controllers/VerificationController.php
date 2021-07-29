@@ -34,8 +34,16 @@ class VerificationController extends Controller
      */
     public function verify()
     {
-        //je recupere les domaines verifer dans notre database
+        //je recupere les domaines verifier dans notre database
         $all_domain_verify = Domain::domain_verify();
+
+        $info = [
+            'sale_of_last_month' => number_format(Domain::sale_of_last_month()),
+            'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
+            'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
+            'domain_verify' => count(Domain::domain_verify()),
+            'domain_paid' => count(Api::getInvoices())
+        ];
 
         $data = [];
 
@@ -43,7 +51,7 @@ class VerificationController extends Controller
             $data[] = $domain->invoice_id;
         }
 
-        return view('dashboard.accountant.invoices', ['tableauInvoices' => Api::getInvoices(), 'domains' => $data]);
+        return view('dashboard.accountant.invoices',$info, ['tableauInvoices' => Api::getInvoices(), 'domains' => $data]);
 
     }
 
@@ -58,7 +66,13 @@ class VerificationController extends Controller
 
         $invoicesDetails = Api::invoice_detail($id);
 
-        $data = ['user' => auth()->user()->name,
+        $data = [
+            'sale_of_last_month' => number_format(Domain::sale_of_last_month()),
+            'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
+            'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
+            'domain_verify' => count(Domain::domain_verify()),
+            'domain_paid' => count(Api::getInvoices()),
+            'user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
             'Action' => 'Show the details for the invoice ' . $id,
             'data' => $invoicesDetails
@@ -67,7 +81,7 @@ class VerificationController extends Controller
         Log::info($data);
 
 
-        return view('dashboard.accountant.details', ['detail' => $invoicesDetails]);
+        return view('dashboard.accountant.details',$data, ['detail' => $invoicesDetails]);
     }
     /**
      * @param $id

@@ -10,12 +10,12 @@
 
 @section('content')
 
-    <div class="col-12 col-md-9">
+    <div class="col-12 col-md-12">
 
         <!-- Card -->
         <div class="card card-bleed shadow-light-lg mb-6">
 
-            <div class="table-responsive-md-12" style="width: 132%">
+            <div class="table-responsive-md-12" style="width: 99%;padding: 1%;">
                 <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                     <tr>
@@ -27,13 +27,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($tableauInvoices['invoices'] as $inv)
+                    @foreach($tableauInvoices as $inv)
 
                         <tr>
-                            <td> {{$inv['id']}}</td>
+                            <td> {{ $inv['id'] }}</td>
                             <td>{{ $inv['status'] }}</td>
-                            <td>{{ $inv['total']}}</td>
-                            <td>{{ $inv['date']}}</td>
+                            <td>{{ $inv['total'] }}</td>
+                            <td>{{ $inv['date'] }}</td>
                             <td><a href="{{ route('details',$inv['id']) }} " class="btn  btn-primary">View</a>
                                 @if( in_array($inv['id'],$domains))
                                     <a class="btn  btn-success">
@@ -44,6 +44,7 @@
                                 @endif
                             </td>
                         </tr>
+
                     @endforeach
                     </tbody>
                 </table>

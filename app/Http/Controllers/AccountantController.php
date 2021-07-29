@@ -88,6 +88,7 @@ class AccountantController extends Controller
             'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
             'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
             'domain_verify' => count(Domain::domain_verify()),
+            'domain_account' => Domain::domainDistinct(),
             'domain_paid' => count(Api::getInvoices()) ,
             'user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
@@ -114,6 +115,7 @@ class AccountantController extends Controller
             'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
             'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
             'domain_verify' => count(Domain::domain_verify()),
+            'domain_account' => Domain::domainDistinct(),
             'domain_paid' => count(Api::getInvoices()) ,
             'user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
@@ -140,6 +142,7 @@ class AccountantController extends Controller
             'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
             'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
             'domain_verify' => count(Domain::domain_verify()),
+            'domain_account' => Domain::domainDistinct(),
             'domain_paid' => count(Api::getInvoices()) ,
             'user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
@@ -166,6 +169,7 @@ class AccountantController extends Controller
             'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
             'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
             'domain_verify' => count(Domain::domain_verify()),
+            'domain_account' => Domain::domainDistinct(),
             'domain_paid' => count(Api::getInvoices()) ,
             'user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
@@ -192,6 +196,7 @@ class AccountantController extends Controller
             'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
             'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
             'domain_verify' => count(Domain::domain_verify()),
+            'domain_account' => Domain::domainDistinct(),
             'domain_paid' => count(Api::getInvoices()) ,
             'user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
@@ -213,6 +218,7 @@ class AccountantController extends Controller
     {
         $domains = Domain::selectUltimateDomain();
         $date = $request->get("date");
+        // dd($date);
         $prevision = [
             "nextYearRenewal" => 0,
             "totalRegistration" => 0,
@@ -250,13 +256,16 @@ class AccountantController extends Controller
             $totalRenewal =  $selectedMonthRenewals->reduce(function ($t, $registration) {
                 return $t + $registration->price;
             });
-			dd($totalRenewal, $nextYearRenewalTotal, $totalRegistration);
+			// dd($totalRenewal, $nextYearRenewalTotal, $totalRegistration);
             $prevision = [
-                "nextYearRenewal" => $nextYearRenewalTotal,
-                "totalRegistration" => $totalRegistration,
-                "totalRenewal" => $totalRenewal
+                "nextYearRenewal" => number_format($nextYearRenewalTotal),
+                "totalRegistration" => number_format($totalRegistration),
+                "totalRenewal" => number_format($totalRenewal),
+                "sum" => number_format($totalRegistration + $totalRenewal),
+                "date" =>  new DateTime("1-$month-$year")
             ];
         }
+
 
         $data = [
             'sale_of_last_month' => number_format(Domain::sale_of_last_month()),
@@ -264,6 +273,7 @@ class AccountantController extends Controller
             'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
             'domain_verify' => count(Domain::domain_verify()),
             'domain_paid' => count(Api::getInvoices()),
+            'domain_account' => Domain::domainDistinct(),
             'user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
             'Action' => 'Show all Domain Name',

@@ -13,7 +13,7 @@
     <!-- Libs CSS -->
 
      <!-- Favicon -->
-    <link rel="icon" href="{{ asset('assets/img/brand/favicon.png')}}" type="image/png">
+    <link rel="icon" href="{{ asset('assets/img/brand/logo.png')}}" type="image/png">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
@@ -23,21 +23,17 @@
     <!-- Argon CSS -->
     <link rel="stylesheet" href="/assets/css/argon.css?v=1.2.0'" type="text/css">
 
-
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
     <!-- Map -->
-    {{-- <link href='{{ asset('api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css') }}' rel='stylesheet'/> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Theme CSS -->
-    {{-- <link rel="stylesheet" href="{{ asset('css/theme.min.css') }}"> --}}
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+
     <!--===============================================================================================-->
 
     @yield('style')
@@ -220,13 +216,14 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link collapsed" href="#navbar-cloudhost" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-cloudhost">
-                                <i class="ni ni-ungroup text-orange"></i>
+                                <i class="ni ni-books text-blue"></i>
                                 <span class="nav-link-text">Cloudhost</span>
                                 </a>
                                 <div class="collapse" id="navbar-cloudhost" style="">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
                                       <a href="{{ route('all-domain-registered') }}" class="nav-link">
+                                        <i class="ni ni-book-bookmark "></i>
                                           <span class="sidenav-normal"> All domain </span>
                                       </a>
                                     </li>
@@ -260,13 +257,13 @@
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="ni ni-palette text-red"></i>
+                                    <i class="ni ni-palette text-orange"></i>
                                     <span class="sidenav-normal"> Pixel </span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="ni ni-palette text-red"></i>
+                                    <i class="ni ni-money-coins text-success"></i>
                                     <span class="sidenav-normal"> Payam </span>
                                 </a>
                             </li>
@@ -290,7 +287,7 @@
 
             <li class="nav-item">
               <a class="nav-link" href="{{ route('prevision') }}">
-                <i class="ni ni-planet text-orange"></i>
+                <i class="ni ni-chart-bar-32 text-orange"></i>
                 <span class="nav-link-text">Previsions</span>
               </a>
             </li>
@@ -464,8 +461,8 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Users</h5>
-                      <span class="h2 font-weight-bold mb-0">924</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Account Domain</h5>
+                      <span class="h2 font-weight-bold mb-0"> {{ $domain_account }}</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -474,8 +471,8 @@
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                    <span class="text-success mr-2"></span>
+                    <span class="text-nowrap"></span>
                   </p>
                 </div>
               </div>
@@ -544,7 +541,6 @@
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 
     <!-- Map -->
-    {{-- <script src='{{ asset('api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js') }}'></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
             crossorigin="anonymous"></script>
@@ -619,6 +615,7 @@
         @endforeach
         @endif
     </script>
+
     <script>
         $(document).ready(function() {
                 $('#datatable').DataTable();

@@ -108,6 +108,7 @@ class Domain extends Model
         return $total_sale;
     }
 
+
     public static function sale_of_current_month()
     {
         $sales = DB::table('domains')
@@ -139,6 +140,13 @@ class Domain extends Model
     public static function domain_verify()
     {
         return Domain::all()->where('verify', true);
+    }
+
+    public static function domainDistinct()
+    {
+        return DB::table('domains')
+                ->distinct('name_host')
+                ->count('name_host');
     }
 
     public static function domain_not_verify()
