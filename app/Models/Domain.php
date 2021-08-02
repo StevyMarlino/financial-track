@@ -149,6 +149,13 @@ class Domain extends Model
                 ->count('name_host');
     }
 
+    public static function userDistinct()
+    {
+        return DB::table('users')
+                ->distinct('email')
+                ->count('email');
+    }
+
     public static function domain_not_verify()
     {
         return Domain::all()->where('verify', false);

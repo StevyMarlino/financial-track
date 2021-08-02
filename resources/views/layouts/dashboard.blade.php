@@ -39,140 +39,6 @@
     @yield('style')
 </head>
 <body>
-
-<!--header -->
-{{-- <header class="bg-dark pt-9 pb-11 d-none d-md-block">
-    <div class="container-md">
-        <div class="row align-items-center">
-            <div class="col">
-
-                <!-- Heading -->
-                <h1 class="font-weight-bold text-white mb-2">
-                    @yield('heading')
-                </h1>
-
-                <!-- Text -->
-                <p class="font-size-lg text-white-75 mb-0">
-                    for <a class="text-reset" href="mailto:{{ Auth::user()->email }}"> {{ Auth::user()->email }}</a>
-                </p>
-
-            </div>
-            <div class="col-auto">
-
-                <!-- Button -->
-                <a href="{{ route('logout') }}" class="btn btn-sm btn-gray-300-20 text-white" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                    {{ __('Log Out') }}
-                </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-
-            </div>
-        </div> <!-- / .row -->
-    </div> <!-- / .container -->
-</header> --}}
-<!-- end header -->
-
-<!-- main -->
-{{-- <main class="pb-8 pb-md-11 mt-md-n6">
-    <div class="container-md">
-        <div class="row">
-            <div class="col-12 col-md-3">
-
-                <!-- Card -->
-                <div class="card card-bleed border-bottom border-bottom-md-0 shadow-light-lg">
-
-                    <!-- Collapse -->
-                    <div class="collapse d-md-block" id="sidenavCollapse">
-                        <div class="card-body">
-
-                            <ul class="card-list list text-gray-700 mb-6">
-
-                                <li class="list-item active">
-                                    <a class="list-link text-reset" href="{{ route('home') }}">
-                                        Dashboard
-                                    </a>
-                                </li>
-
-                                @if( auth()->user()->isUser() or auth()->user()->isAdmin())
-
-                                    <li class="list-item">
-                                        <a class="list-link text-reset" href="{{ route('myDomain') }}">
-                                            My Domains
-                                        </a>
-                                    </li>
-
-                                @endif
-
-                            </ul>
-
-                        @if( auth()->user()->isAccountant() || auth()->user()->isAdmin())
-                            <!-- Heading -->
-                                <h6 class="font-weight-bold text-uppercase mb-3">
-                                    DEPARTEMENTS
-                                </h6>
-
-                                <!-- List -->
-                                <ul class="card-list list text-gray-700 mb-0">
-                                    <li class="list-item">
-                                        <a class="list-link text-reset dropdown-toggle" data-bs-toggle="dropdown"
-                                           aria-expanded="false" href="{{ route('setting') }}">
-                                            Cloudhost
-                                        </a>
-
-                                        <!-- PAGE EN COMMENTAIRE SERONT TRAITES UNE AUTRE FOIS -->
-                                        <ul class="dropdown-menu">
-                                            <li><a href="{{ route('all-domain-registered') }}"
-                                                   class="list-link text-reset dropdown-item"> All domain </a></li>
-                                        <li><a href="{{ route('check') }} " class="list-link text-reset dropdown-item"> Invoice Paid</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-
-                                @if(auth()->user()->isAdmin())
-
-                                    <h6 class="font-weight-bold text-uppercase mb-3 mt-5">
-                                        User Account
-                                    </h6>
-
-                                    <!-- List -->
-                                    <ul class="card-list list text-gray-700 mb-0">
-                                        <li class="list-item">
-                                            <a class="list-link text-reset" href="{{ route('user.index') }}">
-                                                List Users
-                                            </a>
-                                        </li>
-                                    </ul>
-                                @endif
-                            @endif
-                            <h6 class="font-weight-bold text-uppercase mb-3 mt-5">
-                                Settings
-                            </h6>
-
-                            <!-- List -->
-                            <ul class="card-list list text-gray-700 mb-0">
-                                <li class="list-item">
-                                    <a class="list-link text-reset" href="{{ route('setting') }}">
-                                        Settings
-                                    </a>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-            @yield('content')
-        </div> <!-- / .row -->
-    </div> <!-- / .container -->
-</main> --}}
-<!-- end main -->
-
-
 <!-- Sidenav -->
 <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
@@ -477,28 +343,35 @@
                 </div>
               </div>
             </div>
+
+            @if(auth()->user()->isAdmin())
+
             <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                      <span class="h2 font-weight-bold mb-0">49,65%</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                        <i class="ni ni-chart-bar-32"></i>
+                <div class="card card-stats">
+                  <!-- Card body -->
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">User</h5>
+                        <span class="h2 font-weight-bold mb-0">{{ $total_user }}</span>
+                      </div>
+                      <div class="col-auto">
+                        <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                          <i class="ni ni-chart-bar-32"></i>
+                        </div>
                       </div>
                     </div>
+                    <p class="mt-3 mb-0 text-sm">
+                      <span class="text-success mr-2"> </span>
+                      <span class="text-nowrap"></span>
+                    </p>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
                 </div>
               </div>
-            </div>
+              
+            @endif
+
+
           </div>
         </div>
       </div>

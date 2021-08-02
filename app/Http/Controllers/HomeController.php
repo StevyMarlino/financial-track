@@ -41,6 +41,7 @@ class HomeController extends Controller
             'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
             'domain_verify' => count(Domain::domain_verify()),
             'domain_account' => Domain::domainDistinct(),
+            'total_user' => Domain::userDistinct(),
             'domain_paid' => count(Api::getInvoices()) ,
         ];
 
@@ -67,6 +68,7 @@ class HomeController extends Controller
             'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
             'domain_verify' => count(Domain::domain_verify()),
             'domain_account' => Domain::domainDistinct(),
+            'total_user' => Domain::userDistinct(),
             'domain_paid' => count(Api::getInvoices()) ,
         ];
         return view('dashboard.settings',$data);
