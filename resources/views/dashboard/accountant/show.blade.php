@@ -10,19 +10,20 @@
 
 @section('content')
 
-    <div class="col-12 col-md-9">
+    <div class="col-12 col-md-12">
 
         <!-- Card -->
         <div class="card card-bleed shadow-light-lg mb-6">
 
-            <div class="table-responsive-md-12" style="width: 132%">
-                <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+            <div class="table-responsive-md-12" style="width: 99%;padding: 1%;">
+                <table id="datatable" class="table table-striped table-bordered" style="width:100% " >
                     <thead>
                     <tr>
                         <th>name of Host</th>
                         <th>name of Customer</th>
                         <th>Price</th>
                         <th>Services</th>
+                        <th>Types</th>
                         <th>Register by</th>
                         <th>Date</th>
                         <th>action</th>
@@ -41,6 +42,7 @@
                             <td>{{ $domain->name_customer}}</td>
                             <td>{{ $domain->price }}</td>
                             <td>{{ $domain->service }}</td>
+                            <td>{{ $domain->type }}</td>
                             <td>{{ $domain->name }}</td>
                             <td>{{ $domain->created_at}}</td>
                             <td>@if($domain->invoice_id !== 0)<a href="{{ route('details',$domain->invoice_id) }} " class="btn  btn-primary">View</a>@endif</td>

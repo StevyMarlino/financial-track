@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\User\UserUpdateRequest;
-use App\Http\Requests\UseraddRequest;
+use App\Utils\Api;
 use App\Models\User;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Domain;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\UseraddRequest;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\User\UserUpdateRequest;
+use Illuminate\Contracts\Foundation\Application;
 
 class AdminController extends Controller
 {
@@ -19,7 +21,16 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('dashboard.admin.listUser', ['users' => User::all()]);
+        $data = [
+            'sale_of_last_month' => number_format(Domain::sale_of_last_month()),
+            'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
+            'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
+            'domain_verify' => count(Domain::domain_verify()),
+            'domain_account' => Domain::domainDistinct(),
+            'total_user' => Domain::userDistinct(),
+            'domain_paid' => count(Api::getInvoices())
+        ];
+        return view('dashboard.admin.listUser',$data, ['users' => User::all()]);
     }
 
     /**
@@ -91,7 +102,8 @@ class AdminController extends Controller
         $user = user::find($id);
         $user->delete();
 
-        $data = ['user' => auth()->user()->name,
+        $data = [
+            'user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
             'Action' => 'The User are successfully deleted ',
             'data' => $user,

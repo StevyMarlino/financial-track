@@ -1,83 +1,91 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <!-- CSRF Token -->
+  <head>
+      <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Track Finance') }}</title>
+  	<title>{{ config('app.name', 'Track Finance') }} </title>
+      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
-    <link rel="stylesheet" type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="{{ asset('loginPage/css/style.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="{{ asset('login-page/images/icons/favicon.ico') }}"/>
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('login-page/vendor/bootstrap/css/bootstrap.min.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-          href="{{ asset('login-page/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-          href="{{ asset('login-page/fonts/Linearicons-Free-v1.0.0/icon-font.min.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('login-page/vendor/animate/animate.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('login-page/vendor/css-hamburgers/hamburgers.min.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('login-page/vendor/animsition/css/animsition.min.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('login-page/vendor/select2/select2.min.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('login-page/vendor/daterangepicker/daterangepicker.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('login-page/css/util.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('login-page/css/main.css') }}">
-    <!--===============================================================================================-->
+	</head>
+	<body class="img js-fullheight" style="background-image: url(loginPage/images/bg.jpg);">
+	<section class="ftco-section">
+        <div id="app">
 
-    <script
-        src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js">
+            @yield('content')
+
+        </div>
+
+        <div id="dropDownSelect1"></div>
+
+	</section>
+
+
+	<script src="{{ asset('loginPage/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('loginPage/js/popper.js') }}"></script>
+    <script src="{{ asset('loginPage/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('loginPage/js/main.js') }}"></script>
+
+    <script>
+        @if(count($errors) > 0)
+            @foreach($errors->all() as $error)
+            toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.error("{{ $error }}");
+        @endforeach
+            @endif
+
+            @if(session()->has('message'))
+            toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.success("{{ session('message') }}");
+        @endif
     </script>
-    <link rel="stylesheet" type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    @yield('js')
 
-  </head>
-<body>
-
-<div id="app">
-
-    @yield('content')
-
-</div>
-
-<div id="dropDownSelect1"></div>
-
-<!--===============================================================================================-->
-<script src="{{ asset('login-page/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
-<!--===============================================================================================-->
-<script src="{{ asset('login-page/vendor/animsition/js/animsition.min.js') }}"></script>
-<!--===============================================================================================-->
-<script src="{{ asset('login-page/vendor/bootstrap/js/popper.js') }}"></script>
-<script src="{{ asset('login-page/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-<!--===============================================================================================-->
-<script src="{{ asset('login-page/vendor/select2/select2.min.js') }}"></script>
-<!--===============================================================================================-->
-<script src="{{ asset('login-page/vendor/daterangepicker/moment.min.js') }}"></script>
-<script src="{{ asset('login-page/vendor/daterangepicker/daterangepicker.js') }}"></script>
-<!--===============================================================================================-->
-<script src="{{ asset('login-page/vendor/countdowntime/countdowntime.js') }}"></script>
-<!--===============================================================================================-->
-<script src="{{ asset('login-page/js/main.js') }}"></script>
-
-@yield('js')
-
-</body>
-
+	</body>
 </html>

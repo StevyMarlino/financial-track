@@ -34,8 +34,18 @@ class VerificationController extends Controller
      */
     public function verify()
     {
-        //je recupere les domaines verifer dans notre database
+        //je recupere les domaines verifier dans notre database
         $all_domain_verify = Domain::domain_verify();
+
+        $info = [
+            'sale_of_last_month' => number_format(Domain::sale_of_last_month()),
+            'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
+            'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
+            'domain_verify' => count(Domain::domain_verify()),
+            'domain_account' => Domain::domainDistinct(),
+            'total_user' => Domain::userDistinct(),
+            'domain_paid' => count(Api::getInvoices())
+        ];
 
         $data = [];
 
@@ -43,26 +53,10 @@ class VerificationController extends Controller
             $data[] = $domain->invoice_id;
         }
 
-        return view('dashboard.accountant.invoices', ['tableauInvoices' => $this->getInvoices(), 'domains' => $data]);
+        return view('dashboard.accountant.invoices',$info, ['tableauInvoices' => Api::getInvoices(), 'domains' => $data]);
 
     }
 
-    // la fonction ci c'est pour recupérer les invoices d'un utilisateurs
-
-    /**
-     * @return array|JsonResponse
-     */
-    private function getInvoices()
-    {
-
-        $invoices = array(
-            'call' => 'getInvoices',
-            'list' => 'paid'
-        );
-
-        //a ce niveau j'ai déjà les invoices des gars qui ont buy
-        return $this->connect($invoices);
-    }
 
 
     /**
@@ -72,9 +66,17 @@ class VerificationController extends Controller
     public function details($id)
     {
 
-        $invoicesDetails = $this->invoice_detail($id);
+        $invoicesDetails = Api::invoice_detail($id);
 
-        $data = ['user' => auth()->user()->name,
+        $data = [
+            'sale_of_last_month' => number_format(Domain::sale_of_last_month()),
+            'sale_of_current_month' => number_format(Domain::sale_of_current_month()),
+            'percent_of_recipes' => number_format(abs(Domain::percent_of_sale()), 2),
+            'domain_verify' => count(Domain::domain_verify()),
+            'domain_account' => Domain::domainDistinct(),
+            'total_user' => Domain::userDistinct(),
+            'domain_paid' => count(Api::getInvoices()),
+            'user' => auth()->user()->name,
             'role' => auth()->user()->isRole(),
             'Action' => 'Show the details for the invoice ' . $id,
             'data' => $invoicesDetails
@@ -83,32 +85,8 @@ class VerificationController extends Controller
         Log::info($data);
 
 
-        return view('dashboard.accountant.details', ['detail' => $invoicesDetails]);
+        return view('dashboard.accountant.details',$data, ['detail' => $invoicesDetails]);
     }
-
-    /**
-     * @param $query
-     * @return array|bool|string
-     */
-    private function connect($query)
-    {
-        return Api::requestApi(Api::addApiAccess($query), ApiConst::url);
-    }
-
-    /**
-     * @param $id
-     * @return array|bool|string
-     */
-    private function invoice_detail($id)
-    {
-        $invoicesDetails = array(
-            'id' => $id,
-            'call' => 'getInvoiceDetails',
-        );
-
-        return $this->connect($invoicesDetails);
-    }
-
     /**
      * @param $id
      * @return RedirectResponse
@@ -116,7 +94,7 @@ class VerificationController extends Controller
     public function domain_exist($id)
     {
 
-        $domain_want_to_verify = $this->invoice_detail($id);
+        $domain_want_to_verify = Api::invoice_detail($id);
 
         $ma_chaine = "";
         foreach ($domain_want_to_verify['invoice']['items'] as $item) {

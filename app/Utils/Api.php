@@ -110,4 +110,35 @@ class Api
 
         return $result;
     }
+
+      // la fonction ci c'est pour recupérer les invoices payés
+
+    public static function getInvoices()
+    {
+        $invoices = array(
+            'call' => 'getInvoices',
+            'list' => 'paid'
+        );
+        return Api::connect($invoices)['invoices'];
+    }
+
+    /**
+     * @param $id
+     * @return array|bool|string
+     */
+    public static function invoice_detail($id)
+    {
+        $invoicesDetails = array(
+            'id' => $id,
+            'call' => 'getInvoiceDetails',
+        );
+
+        return Api::connect($invoicesDetails);
+    }
+
+    public static function connect($query){
+        return Api::requestApi(Api::addApiAccess($query), ApiConst::url);
+    }
+
+
 }

@@ -10,6 +10,8 @@
 
 @section('content')
 
+
+
     <div class="col-12 col-md-9">
 
         <!-- Card -->
@@ -105,6 +107,20 @@
                                             <div class="alert alert-danger mt-2">{{ $message }} </div>
                                             @enderror
                                         </div>
+                                        <div class="col-12 col-md-12 mt-3">
+
+                                            <!-- Forfaits -->
+                                            <select name="type" class="form-control @error('type') is-invalid @enderror">
+                                                <option selected disabled hidden>PACKAGE...</option>
+                                                <option value="STARTER">STARTER</option>
+                                                <option value="BUSINESS">BUSINESS</option>
+                                                <option value="PREMIUM">PREMIUM</option>
+                                                <option value="ULTIMATE">ULTIMATE</option>
+                                            </select>
+                                            @error('method_payment')
+                                            <div class="alert alert-danger mt-2">{{ $message }} </div>
+                                            @enderror
+                                        </div>
 
                                     </div>
                                     <div class="modal-footer">
@@ -127,11 +143,13 @@
                             <th>Name of Customer</th>
                             <th>Price</th>
                             <th>Services</th>
+                            <th>Packages</th>
                             <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($domain as $items)
+
                         <tr>
                             <td> {{ $items->name_host}} @if($items->verify) <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
@@ -139,6 +157,7 @@
                             <td>{{ $items->name_customer}}</td>
                             <td>{{ $items->price }}</td>
                             <td>{{ $items->service }}</td>
+                            <td>{{ $items->type }}</td>
                             <td>{{ $items->created_at }}</td>
                         </tr>
                         @endforeach
