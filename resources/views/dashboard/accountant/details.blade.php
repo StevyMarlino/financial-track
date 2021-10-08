@@ -10,9 +10,9 @@
 
 @section('content')
   <div class="container-fluid">
-      <div class="row justify-content-center printMe">
-          <div class="col-12 col-md-9 mt-xl-n15">
-              <div class="card shadow-dark-lg border-light p-md-5 position-relative">
+      <div class="row justify-content-center">
+          <div class="col-12 col-md-9 mt-xl-n15 printMe">
+              <div class="card shadow-dark-lg border-light p-md-5 position-relative ">
                   <div class="d-flex justify-content-between pb-md-5  border-bottom border-light">
 
                       <div class="col-md-6">
@@ -160,7 +160,11 @@
           visibility: hidden;
         }
         .printMe * {
-         visibility: visible;
+
+            visibility: visible;
+
+
+
         }
         .impression * {
             visibility: hidden;
