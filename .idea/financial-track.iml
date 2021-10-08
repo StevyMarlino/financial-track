@@ -133,5 +133,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="toastr.js" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="print" level="application" />
   </component>
 </module>
