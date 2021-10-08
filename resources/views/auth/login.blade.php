@@ -15,7 +15,7 @@
                         <form action="{{ route('login') }}" class="signin-form" method="POST">
                             @csrf
                             <div class="form-group">
-                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email">
+                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" value="{{ old('email') }}">
                                 <span class="focus-input100" data-placeholder="&#xe82a;"></span>
 
                                 @error('email')
