@@ -120,7 +120,7 @@ class VerificationController extends Controller
      * @param $due_date
      * @return bool
      */
-    private function mark_as_verify($string, $id, $due_date): bool
+    private function mark_as_verify(string $string, $id, $due_date): bool
     {
         if (!$this->is_already_mark($string)) {
             $all_domain_not_verify = Domain::domain_not_verify();
@@ -146,7 +146,7 @@ class VerificationController extends Controller
      * @param $string
      * @return bool
      */
-    private function is_already_mark($string): bool
+    private function is_already_mark(string $string): bool
     {
         $all_domain_verify = Domain::domain_verify();
 
